@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Colectii.colectii.impl
+namespace Colectii_.examples
 {
     public class Programare : IComparable<Programare>
     {

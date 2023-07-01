@@ -2,32 +2,25 @@
 
 
 
-using Colectii.colectii.hashtable;
 using Colectii.models;
+using Colectii_.colectii.hashtable;
+using Colectii_.examples;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Masina a = new Masina("audi", "alb", 2001);
-        Masina b = new Masina("bmw", "gri", 2011);
-        Masina c = new Masina("ferarri", "negru", 2023);
-        Masina d = new Masina("bentley", "roz", 2004);
-        Masina e = new Masina("ford", "maro", 2019);
-        Masina f = new Masina("dacia", "alb", 1300);
+        Persoana a = new Persoana("alex",13,false);
+        Persoana b = new Persoana("mihai",45,true);
+        Persoana c = new Persoana("vlad",29,true);
+        Persoana d = new Persoana("ana",42,false);
+        Persoana e = new Persoana("george",38,false);
+        Persoana f = new Persoana("dan",19,true);
 
-        IHashTable<String, Masina> table = new SimpleHashTable<String, Masina>(10);
 
-        table.put("aa", a);
-        table.put("aaa", b);
-        table.put("bbbbb", c);
-        table.put("cc", d);
-        table.put("dddd", e);
-        table.put("ee", f);
+        IControler<Persoana, Programare> table = new ControlerSimpleHashTable<Persoana, Programare>(10);
 
-        table.print();
-        Console.WriteLine(table.findPosition("ee"));
-        Console.WriteLine(table.get("ee").ToString());
+
 
     }
 }

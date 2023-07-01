@@ -5,8 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Colectii.utils;
+using Colectii_.examples;
+using Colectii;
+using Colectii.colectii.impl;
 
-namespace Colectii.colectii.impl
+namespace Colectii_.examples
 {
     public class Controler
     {
