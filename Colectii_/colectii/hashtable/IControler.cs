@@ -11,13 +11,15 @@ namespace Colectii_.colectii.hashtable
     {
         int hashKey(K key);
 
-        void load(Stored<K, V>[] hashtable);
+        void load();
 
         void afisare();
 
-        void update(K key, K newkey);
+        void update(K key, V newValue);
 
         void remove(K key);
+
+        bool occupied(int poz);
 
         void add(K key,V value);
 
