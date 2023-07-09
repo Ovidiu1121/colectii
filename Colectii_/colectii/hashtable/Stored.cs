@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Colectii.colectii.hashtable
 {
-    public class Stored<K, V>
-    {
+    public class Stored<K, V>:IComparable<Stored<K, V>>
+    { 
         private K key;
         private V value;
 
@@ -20,6 +20,11 @@ namespace Colectii.colectii.hashtable
             this.value = value;
         }
 
+        public int CompareTo(Stored<K, V>? other)
+        {
+
+            return 1;
+        }
     }
 }
 

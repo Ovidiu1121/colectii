@@ -204,5 +204,49 @@ namespace Colectii.colectii.impl
         {
             return node;
         }
+
+        public int CompareTo(ILista<T>? other)
+        {
+            if (this.size()>other.size())
+            {
+                return 1;
+            }
+            else if (this.size()<other.size())
+            {
+                return -1;
+            }
+
+            return 0;
+        }
+
+        public void delete(T data)
+        {
+            Node<T> aux = node;
+
+            if (aux.Data.Equals(data))
+            {
+                deletePosition(0);
+            }
+
+            while (aux!=null)
+            {
+                if (aux.Next.Data.Equals(data))
+                {
+                    if (aux.Next.Next==null)
+                    {
+                        aux.Next=null;
+                        return;
+                    }
+                    aux.Next=aux.Next.Next;
+                    return;
+                }
+                aux=aux.Next;
+            }
+        }
+
+        public Node<T> First()
+        {
+            return node;
+        }
     }
 }

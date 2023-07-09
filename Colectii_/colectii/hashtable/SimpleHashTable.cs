@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Colectii.colectii.impl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Colectii.colectii.hashtable
 {
-    public class SimpleHashTable<K, V> : IHashTable<K, V>
+    public class SimpleHashTable<K, V> : IHashTable<K, V> where K:IComparable<K> where V:IComparable<V>
     {
         private Stored<K, V>[] hashtable;
 
         public SimpleHashTable()
         {
+
         }
 
         public SimpleHashTable(int size)
@@ -136,5 +138,54 @@ namespace Colectii.colectii.hashtable
             }
         }
 
+        public IList<Stored<K, V>> storeds()
+        {
+            IList<Stored<K,V>> lista = new List<Stored<K, V>>();
+
+            for (int i = 0; i<hashtable.Length; i++)
+            {
+                if (hashtable[i]!=null)
+                {
+                    lista.Add(hashtable[i]);
+                }
+            }
+            return lista;
+        }
+
+        public ILista<K> keys()
+        {
+            ILista<K> lista = new Lista<K>();
+
+            for (int i = 0; i<hashtable.Length; i++)
+            {
+                if (hashtable[i]!=null)
+                {
+                    lista.addFinish(hashtable[i].Key);
+                }
+            }
+            return lista;
+        }
+
+        public ILista<V> values()
+        {
+            ILista<V> lista = new Lista<V>();
+
+            for (int i = 0; i<hashtable.Length; i++)
+            {
+                if (hashtable[i]!=null)
+                {
+                    lista.addFinish(hashtable[i].Value);
+                }
+            }
+            return lista;
+        }
+
+        public void delete(K key)
+        {
+            int hashedkey = findPosition(key);
+
+            hashtable[hashedkey] = null;
+
+        }
     }
 }

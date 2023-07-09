@@ -50,7 +50,7 @@ namespace Colectii.models
             text+="Varsta:"+this.varsta+", ";
             text+="Angajat:"+this.angajat;
 
-            return text;
+            return this.nume;
         }
 
         public int CompareTo(Persoana? other)
@@ -75,7 +75,7 @@ namespace Colectii.models
         {
             Persoana p = obj as Persoana;
 
-            return p.varsta.Equals(this.varsta);
+            return p.nume.Equals(this.nume);
         }
 
     }

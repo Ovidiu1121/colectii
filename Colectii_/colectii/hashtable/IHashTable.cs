@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Colectii.colectii.hashtable
 {
-    public interface IHashTable<K, V>
+    public interface IHashTable<K, V> where V:IComparable<V> where K:IComparable<K>
     {
         int hashKey(K key);
 
@@ -18,7 +18,11 @@ namespace Colectii.colectii.hashtable
 
         void print();
 
-        bool occupied(int position);
+        ILista<K> keys();   
+
+        ILista<V> values();
+
+        void delete(K key);
 
     }
 }

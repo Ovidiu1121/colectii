@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Colectii.colectii.impl
 {
-    public class Lista<T> : ILista<T> where T : IComparable<T>
+    public class Lista<T> : ILista<T> where T : IComparable<T>  
     {
 
         Node<T> node = null;
@@ -112,6 +112,45 @@ namespace Colectii.colectii.impl
             }
         }
 
+        public int CompareTo(ILista<T>? other)
+        {
+            if (this.size()>other.size())
+            {
+                return 1;
+            }else if (this.size()<other.size())
+            {
+                return -1;
+            }
+
+            return 0;
+        }
+
+        public void delete(T data)
+        {
+            Node<T> aux = node;
+
+            if (aux.Data.Equals(data))
+            {
+                deletePosition(0);
+            }
+
+            while (aux!=null)
+            {
+                if (aux.Next.Data.Equals(data))
+                {
+                    if (aux.Next.Next==null)
+                    {
+                        aux.Next=null;
+                        return;
+                    }
+                    aux.Next=aux.Next.Next;
+                    return;
+                }
+                aux=aux.Next;
+            }
+
+        }
+
         public void deleteFinish()
         {
             Node<T> nou = node;
@@ -153,9 +192,21 @@ namespace Colectii.colectii.impl
             node=node.Next;
         }
 
+        public Node<T> First()
+        {
+            return node;
+        }
+
         public Node<T> getIterator()
         {
             return node;
+        }
+
+        public bool isEmpty()
+        {
+            Node<T> aux = node;
+
+            return aux==null;
         }
 
         public int position(T item)

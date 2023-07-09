@@ -9,19 +9,16 @@ namespace Colectii_.colectii.hashtable
 {
     public interface IControler<K,V>
     {
-        int hashKey(K key);
 
         void load();
 
         void afisare();
 
-        void update(K key, V newValue);
+        void update(K key,V oldValue, V newValue);
 
         void remove(K key);
 
-        bool occupied(int poz);
-
-        void add(K key,V value);
+        void adaugare(K key,V value);
 
     }
 }
