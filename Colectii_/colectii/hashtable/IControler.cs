@@ -14,7 +14,7 @@ namespace Colectii_.colectii.hashtable
 
         void afisare();
 
-        void update(K key,V oldValue, V newValue);
+        void update(V oldValue, V newValue);
 
         void remove(K key);
 

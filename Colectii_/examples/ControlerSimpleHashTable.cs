@@ -14,7 +14,7 @@ namespace Colectii_.examples
 {
     public class ControlerSimpleHashTable : IControler<Persoana,Programare> 
     {
-        private SimpleHashTable<Persoana,Lista<Programare>> table;
+        private IHashTable<Persoana,Lista<Programare>> table;
        
         public ControlerSimpleHashTable()
         {
@@ -48,7 +48,7 @@ namespace Colectii_.examples
             while (persoana!=null)
             {
                 Console.Write("Persoana ->> ");
-                Console.WriteLine(persoana.Data.ToString());
+                Console.WriteLine(persoana.Data.ToString());    
 
                 ILista<Lista<Programare>> programari=table.values();//mai multe liste de programari
                
@@ -121,7 +121,7 @@ namespace Colectii_.examples
 
         }
 
-        public void update(Persoana key,Programare oldValue, Programare newValue)
+        public void update(Programare oldValue, Programare newValue)
         {
             ILista<Lista<Programare>> lista = table.values();
 
@@ -131,15 +131,15 @@ namespace Colectii_.examples
             {
                 Node<Programare>p=programari.Data.getIterator();
 
-                if (p.Data.Equals(oldValue))
+                while (p!=null)
                 {
-                    if (p.Data.NumeClient.Equals(key.Nume))
+                    if (p.Data.Equals(oldValue))
                     {
                         p.Data=newValue;
-                        return;
                     }
+                    p=p.Next;
                 }
-                p=p.Next;
+                programari=programari.Next;
             }
 
         }
