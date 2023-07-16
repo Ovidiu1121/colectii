@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ViewChainedHashTable.Properties
+namespace ChainedHashTableForm.Properties
 {
 
 

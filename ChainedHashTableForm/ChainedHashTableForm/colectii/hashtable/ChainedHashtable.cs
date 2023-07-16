@@ -36,7 +36,7 @@ namespace Colectii_.colectii.hashtable
             //Console.WriteLine("Key does not exist");
         }
 
-        public int findPosition(K key,bool show)
+        public int findPosition(K key, bool show)
         {
             int hashedKey = hashKey(key);
             if (show)
@@ -100,7 +100,7 @@ namespace Colectii_.colectii.hashtable
         {
             for (int i = 0; i < hashtable.Length; i++)
             {
-                
+
                 if (hashtable[i].isEmpty())
                 {
                     hashtable[i].afisare();

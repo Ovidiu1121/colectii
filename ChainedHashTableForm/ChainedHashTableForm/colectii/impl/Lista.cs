@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Colectii.colectii.impl
 {
-    public class Lista<T> : ILista<T> where T : IComparable<T>  
+    public class Lista<T> : ILista<T> where T : IComparable<T>
     {
 
         Node<T> node = null;
@@ -112,12 +112,13 @@ namespace Colectii.colectii.impl
             }
         }
 
-        public int CompareTo(ILista<T>? other)
+        public int CompareTo(ILista<T> other)
         {
             if (this.size()>other.size())
             {
                 return 1;
-            }else if (this.size()<other.size())
+            }
+            else if (this.size()<other.size())
             {
                 return -1;
             }
@@ -155,7 +156,7 @@ namespace Colectii.colectii.impl
         {
             Node<T> nou = node;
 
-            if (nou==null||node.Next==null) 
+            if (nou==null||node.Next==null)
             {
                 return;
             }
@@ -192,7 +193,7 @@ namespace Colectii.colectii.impl
             }
 
             Node<T> aux = null;
-            while (nou!=null) 
+            while (nou!=null)
             {
                 if (ct==poz)
                 {
@@ -203,7 +204,7 @@ namespace Colectii.colectii.impl
                 nou=nou.Next;
                 ct++;
             }
-            
+
         }
 
         public void deleteStart()

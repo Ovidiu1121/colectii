@@ -1,10 +1,15 @@
-﻿using System;
+﻿using ChainedHashTableForm.forms;
+using Colectii.models;
+using Colectii_.colectii.hashtable;
+using Colectii_.examples;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ViewChainedHashTable
+namespace ChainedHashTableForm
 {
     internal static class Program
     {
@@ -16,7 +21,9 @@ namespace ViewChainedHashTable
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FrmHome());
+
+
         }
     }
 }
