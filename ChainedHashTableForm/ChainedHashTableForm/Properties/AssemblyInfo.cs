@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ViewChainedHashTable")]
+[assembly: AssemblyTitle("ChainedHashTableForm")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ViewChainedHashTable")]
+[assembly: AssemblyProduct("ChainedHashTableForm")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("99d69882-e9ab-4dd1-8da3-1acb6abe3c85")]
+[assembly: Guid("c4698445-f0a9-4553-8072-7ac8da22c7db")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{99D69882-E9AB-4DD1-8DA3-1ACB6ABE3C85}</ProjectGuid>
+    <ProjectGuid>{C4698445-F0A9-4553-8072-7AC8DA22C7DB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ViewChainedHashTable</RootNamespace>
-    <AssemblyName>ViewChainedHashTable</AssemblyName>
+    <RootNamespace>ChainedHashTableForm</RootNamespace>
+    <AssemblyName>ChainedHashTableForm</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,14 +46,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="colectii\hashtable\ChainedHashtable.cs" />
+    <Compile Include="colectii\hashtable\IControler.cs" />
+    <Compile Include="colectii\hashtable\IHashTable.cs" />
+    <Compile Include="colectii\hashtable\SimpleHashTable.cs" />
+    <Compile Include="colectii\hashtable\Stored.cs" />
+    <Compile Include="colectii\impl\Coada.cs" />
+    <Compile Include="colectii\impl\ILista.cs" />
+    <Compile Include="colectii\impl\Lista.cs" />
+    <Compile Include="colectii\impl\Node.cs" />
+    <Compile Include="colectii\impl\Stiva.cs" />
+    <Compile Include="controlers\ControlerChainedHashTable.cs" />
+    <Compile Include="controlers\ControlerProgramare.cs" />
+    <Compile Include="controlers\ControlerSimpleHashTable.cs" />
+    <Compile Include="exceptions\EmptyField.cs" />
+    <Compile Include="exceptions\ProgramareSuprapunere.cs" />
+    <Compile Include="forms\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="forms\FrmHome.Designer.cs">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockups\MockupMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockups\MockupMain.Designer.cs">
+      <DependentUpon>MockupMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="models\Persoana.cs" />
+    <Compile Include="models\Programare.cs" />
+    <Compile Include="panels\PnlLogIn.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utils\Constants.cs" />
+    <EmbeddedResource Include="forms\FrmHome.resx">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockups\MockupMain.resx">
+      <DependentUpon>MockupMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,5 +109,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
