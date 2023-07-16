@@ -155,16 +155,19 @@ namespace Colectii.colectii.impl
         {
             Node<T> nou = node;
 
-            if (nou==null)
+            if (nou==null||node.Next==null) 
             {
                 return;
             }
 
-            while (nou.Next.Next!=null)
+            Node<T> aux = null;
+
+            while (nou.Next!=null)
             {
+                aux=nou;
                 nou=nou.Next;
             }
-            nou.Next=null;
+            aux.Next=null;
         }
 
         public void deletePosition(int poz)
@@ -172,19 +175,35 @@ namespace Colectii.colectii.impl
             Node<T> nou = node;
             int ct = 0;
 
+            if (nou==null)
+            {
+                return;
+            }
+
             if (poz==0)
             {
                 deleteStart();
+                return;
             }
-            else
+            if (poz==size()-1)
             {
-                while (nou!=null&&ct!=poz-1)
-                {
-                    ct++;
-                    nou=nou.Next;
-                }
-                nou.Next=nou.Next.Next;
+                deleteFinish();
+                return;
             }
+
+            Node<T> aux = null;
+            while (nou!=null) 
+            {
+                if (ct==poz)
+                {
+                    aux.Next=nou.Next;
+                    return;
+                }
+                aux=nou;
+                nou=nou.Next;
+                ct++;
+            }
+            
         }
 
         public void deleteStart()

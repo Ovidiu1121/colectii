@@ -27,11 +27,13 @@ namespace Colectii_.colectii.hashtable
             while (head != null)
             {
                 if (head.Data.Key.Equals(key))
+                {
                     hashtable[hashedKey].deletePosition(i);
+                }
                 i++;
                 head = head.Next;
             }
-            Console.WriteLine("Key does not exist");
+            //Console.WriteLine("Key does not exist");
         }
 
         public int findPosition(K key,bool show)
@@ -98,7 +100,7 @@ namespace Colectii_.colectii.hashtable
         {
             for (int i = 0; i < hashtable.Length; i++)
             {
-                Console.WriteLine(i + ": ");
+                
                 if (hashtable[i].isEmpty())
                 {
                     hashtable[i].afisare();
@@ -106,6 +108,7 @@ namespace Colectii_.colectii.hashtable
                 }
                 else
                 {
+                    Console.WriteLine(i + ": ");
                     Node<Stored<K, V>> head = hashtable[i].First();
                     while (head != null)
                     {
