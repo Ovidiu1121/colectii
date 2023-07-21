@@ -78,6 +78,21 @@ namespace Colectii_.examples
             throw new NotImplementedException();
         }
 
+        public Programare getProgramare(Persoana key, DateTime datainceput)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ILista<Programare> getProgramari(Persoana key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool isPersoana(string nume, int varsta)
+        {
+            throw new NotImplementedException();
+        }
+
         public void load()
         {
             Persoana a = new Persoana("alex", 13, false);
@@ -124,6 +139,11 @@ namespace Colectii_.examples
                 p=p.Next;
             }
 
+        }
+
+        public void removeProgramare(Programare value)
+        {
+            throw new NotImplementedException();
         }
 
         public void update(Programare oldValue, Programare newValue)

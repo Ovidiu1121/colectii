@@ -1,4 +1,5 @@
 ﻿using ChainedHashTableForm.forms;
+using Colectii;
 using Colectii.models;
 using Colectii_.colectii.hashtable;
 using Colectii_.examples;
@@ -19,10 +20,18 @@ namespace ChainedHashTableForm
         [STAThread]
         static void Main()
         {
+
+            Persoana p = new Persoana("alex", 13, false);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmHome());
+            Application.Run(new FrmMain(p));
 
+            //ControlerChainedHashTable a = new ControlerChainedHashTable();
+
+            //Programare p2 = a.getProgramare(p, new DateTime(2022, 8, 28));
+
+            //Debug.WriteLine(p2.ToString());
 
         }
     }

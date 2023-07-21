@@ -19,6 +19,8 @@ namespace ChainedHashTableForm.forms
         {
             InitializeComponent();
 
+            this.Size = new System.Drawing.Size(1000, 403);
+
             this.activepanel=new PnlLogIn(this);
 
             this.Controls.Add(activepanel);
