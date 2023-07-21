@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Colectii_.examples
 {
-    public class ControlerChainedHashTable : IControler<Persoana, Programare>
+    public class ControlerChainedHashTable : IControler<Persoana, Programare> 
     {
-        private IHashTable<Persoana, Lista<Programare>> table;
+        private ChainedHashtable<Persoana, Lista<Programare>> table;
 
         public ControlerChainedHashTable()
         {
@@ -149,9 +149,102 @@ namespace Colectii_.examples
                 {
                     return p.Data;
                 }
-
+                p=p.Next;
             }
             return null;
         }
+
+        public bool isPersoana(string nume, int varsta)
+        {
+
+            ILista<Persoana> a = table.keys();
+
+            Node<Persoana> p = a.getIterator();
+
+            while (p!=null)
+            {
+                if (p.Data.Nume.Equals(nume)&&p.Data.Varsta.Equals(varsta))
+                {
+                    return true;
+                }
+                p=p.Next;
+            }
+            return false;
+        }
+
+        public ILista<Programare> getProgramari(Persoana key)
+        {
+
+            ILista<Programare>ls=new Lista<Programare>();
+
+            ILista<Lista<Programare>> lista = table.values();
+
+            Node<Lista<Programare>> p = lista.getIterator();
+            while (p!=null)
+            {
+                Node<Programare> programare = p.Data.getIterator();
+
+                while (programare!=null)
+                {
+                    if (programare.Data.NumeClient.Equals(key.Nume))
+                    {
+                        ls.addFinish(programare.Data);
+                    }
+                    programare=programare.Next;
+                }
+                p=p.Next;
+            }
+
+            return ls;
+
+        }
+
+        public Programare getProgramare(Persoana key, DateTime datainceput)
+        {
+            ILista<Lista<Programare>> lista = table.values();
+
+            Node<Lista<Programare>> programari = lista.getIterator();
+
+            while (programari!=null)
+            {
+                Node<Programare> p = programari.Data.getIterator();
+
+                while (p!=null)
+                {
+                    if (p.Data.NumeClient.Equals(key.Nume)&&p.Data.DataInceput.Equals(datainceput))
+                    {
+                        return p.Data;
+                    }
+                    p=p.Next;
+                }
+                programari=programari.Next;
+            }
+            return null;
+        }
+
+        public void removeProgramare(Programare value)
+        {
+
+            ILista<Lista<Programare>> lista = table.values();
+
+            Node<Lista<Programare>> programari = lista.getIterator();
+
+            while (programari!=null)
+            {
+                Node<Programare> p = programari.Data.getIterator();
+
+                while (p!=null)
+                {
+                    if (p.Next != null && p.Next.Data.DataInceput.Equals(value.DataInceput))
+                    {
+                        p.Next = p.Next.Next;
+                        return; 
+                    }
+                    p=p.Next;
+                }
+                programari=programari.Next;
+            }
+        }
+
     }
 }

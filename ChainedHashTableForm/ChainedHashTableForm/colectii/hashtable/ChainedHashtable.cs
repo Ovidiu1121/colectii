@@ -1,6 +1,8 @@
 ﻿using Colectii;
 using Colectii.colectii.hashtable;
 using Colectii.colectii.impl;
+using Colectii.models;
+using Colectii_.examples;
 using System;
 using System.Collections.Generic;
 using System.Linq;

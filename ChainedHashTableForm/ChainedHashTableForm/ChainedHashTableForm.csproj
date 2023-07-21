@@ -61,11 +61,36 @@
     <Compile Include="controlers\ControlerSimpleHashTable.cs" />
     <Compile Include="exceptions\EmptyField.cs" />
     <Compile Include="exceptions\ProgramareSuprapunere.cs" />
+    <Compile Include="exceptions\WrongPerson.cs" />
     <Compile Include="forms\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\FrmHome.Designer.cs">
       <DependentUpon>FrmHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockups\MockupAdaugareProgramare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockups\MockupAdaugareProgramare.Designer.cs">
+      <DependentUpon>MockupAdaugareProgramare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockups\MockupAfisareProgramari.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockups\MockupAfisareProgramari.Designer.cs">
+      <DependentUpon>MockupAfisareProgramari.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockups\MockupEditareProgramare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockups\MockupEditareProgramare.Designer.cs">
+      <DependentUpon>MockupEditareProgramare.cs</DependentUpon>
     </Compile>
     <Compile Include="mockups\MockupMain.cs">
       <SubType>Form</SubType>
@@ -75,7 +100,19 @@
     </Compile>
     <Compile Include="models\Persoana.cs" />
     <Compile Include="models\Programare.cs" />
+    <Compile Include="panels\PnlAdaugaProgramare.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="panels\PnlAfisareProgramari.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="panels\PnlLogIn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="panels\PnlMain.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="panels\PnlStergeProgramare.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -83,6 +120,18 @@
     <Compile Include="utils\Constants.cs" />
     <EmbeddedResource Include="forms\FrmHome.resx">
       <DependentUpon>FrmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockups\MockupAdaugareProgramare.resx">
+      <DependentUpon>MockupAdaugareProgramare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockups\MockupAfisareProgramari.resx">
+      <DependentUpon>MockupAfisareProgramari.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockups\MockupEditareProgramare.resx">
+      <DependentUpon>MockupEditareProgramare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mockups\MockupMain.resx">
       <DependentUpon>MockupMain.cs</DependentUpon>

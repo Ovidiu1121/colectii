@@ -14,6 +14,6 @@ namespace Colectii.utils
 
         public static readonly string SPATIU_NECOMPLETAT = "Spatiu necompletat";
 
-
+        public static readonly string WRONG_PERSON = "Datele introduse nu corespund";
     }
 }

@@ -1,6 +1,8 @@
-﻿using ChainedHashTableForm.forms;
+﻿using ChainedHashTableForm.exceptions;
+using ChainedHashTableForm.forms;
 using Colectii.models;
 using Colectii.utils;
+using Colectii_.colectii.hashtable;
 using Colectii_.examples;
 using Colectii_.exceptions;
 using System;
@@ -22,7 +24,7 @@ namespace ChainedHashTableForm.panels
         private TextBox txtnume;
         private Button btnlogin;
         private FrmHome frmHome;
-        private ControlerChainedHashTable controler;
+        private IControler<Persoana, Programare> controler = new ControlerChainedHashTable();
 
         public PnlLogIn(FrmHome frmHome)
         {
@@ -67,6 +69,7 @@ namespace ChainedHashTableForm.panels
             this.btnlogin.Location=new Point(238, 219);
             this.btnlogin.Size=new Size(103, 30);
             this.btnlogin.Text="Log in";
+            this.btnlogin.Click+=new EventHandler(logare_Click);
 
 
         }
@@ -80,10 +83,21 @@ namespace ChainedHashTableForm.panels
             }
             else
             {
-                Persoana p = this.controler.getPersoana(this.txtnume.Text,int.Parse(this.txtvarsta.Text));
+                if(this.controler.isPersoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text))==false)
+                {
+                    MessageBox.Show(Constants.WRONG_PERSON);
+                }
+                else
+                {
+                    Persoana p = this.controler.getPersoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text));
 
-
-
+                    FrmMain main = new FrmMain(p);
+                    frmHome.Hide();
+                    main.Closed+=(s, args) => this.frmHome.Close();
+                    main.Show();
+                }
+                
+                
             }
 
 
