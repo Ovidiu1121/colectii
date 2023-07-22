@@ -55,6 +55,7 @@ namespace ChainedHashTableForm.panels
             this.btnedit.Location = new System.Drawing.Point(143, 198);
             this.btnedit.Size = new System.Drawing.Size(163, 50);
             this.btnedit.Text = "Modifica programare";
+            this.btnedit.Click+=new EventHandler(modificaProgramare_Click);
 
             this.btndelete=new Button();
             this.Controls.Add(this.btndelete);
@@ -86,6 +87,13 @@ namespace ChainedHashTableForm.panels
         {
             this.frmMain.Controls.Remove(this.frmMain.activepanel);
             this.frmMain.activepanel=new PnlStergeProgramare(this.frmMain, this.persoana, this.controler);
+            this.frmMain.Controls.Add(this.frmMain.activepanel);
+        }
+
+        public void modificaProgramare_Click(object sender, EventArgs e)
+        {
+            this.frmMain.Controls.Remove(this.frmMain.activepanel);
+            this.frmMain.activepanel=new PnlAlegeProgramare(this.frmMain, this.persoana, this.controler);
             this.frmMain.Controls.Add(this.frmMain.activepanel);
         }
 

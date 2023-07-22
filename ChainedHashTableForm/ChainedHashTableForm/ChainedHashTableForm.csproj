@@ -86,17 +86,23 @@
     <Compile Include="mockups\MockupAfisareProgramari.Designer.cs">
       <DependentUpon>MockupAfisareProgramari.cs</DependentUpon>
     </Compile>
-    <Compile Include="mockups\MockupEditareProgramare.cs">
+    <Compile Include="mockups\MockupStergereProgramare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mockups\MockupEditareProgramare.Designer.cs">
-      <DependentUpon>MockupEditareProgramare.cs</DependentUpon>
+    <Compile Include="mockups\MockupStergereProgramare.Designer.cs">
+      <DependentUpon>MockupStergereProgramare.cs</DependentUpon>
     </Compile>
     <Compile Include="mockups\MockupMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mockups\MockupMain.Designer.cs">
       <DependentUpon>MockupMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockups\MockupModificare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockups\MockupModificare.Designer.cs">
+      <DependentUpon>MockupModificare.cs</DependentUpon>
     </Compile>
     <Compile Include="models\Persoana.cs" />
     <Compile Include="models\Programare.cs" />
@@ -106,10 +112,16 @@
     <Compile Include="panels\PnlAfisareProgramari.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="panels\PnlAlegeProgramare.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="panels\PnlLogIn.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="panels\PnlMain.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="panels\PnlModificaProgramare.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="panels\PnlStergeProgramare.cs">
@@ -130,11 +142,14 @@
     <EmbeddedResource Include="mockups\MockupAfisareProgramari.resx">
       <DependentUpon>MockupAfisareProgramari.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mockups\MockupEditareProgramare.resx">
-      <DependentUpon>MockupEditareProgramare.cs</DependentUpon>
+    <EmbeddedResource Include="mockups\MockupStergereProgramare.resx">
+      <DependentUpon>MockupStergereProgramare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mockups\MockupMain.resx">
       <DependentUpon>MockupMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockups\MockupModificare.resx">
+      <DependentUpon>MockupModificare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

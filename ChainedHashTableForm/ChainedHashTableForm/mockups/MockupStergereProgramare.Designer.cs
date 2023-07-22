@@ -1,6 +1,6 @@
 ﻿namespace ChainedHashTableForm.mockups
 {
-    partial class MockupEditareProgramare
+    partial class MockupStergereProgramare
     {
         /// <summary>
         /// Required designer variable.

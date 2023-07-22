@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ChainedHashTableForm.mockups
 {
-    public partial class MockupEditareProgramare : Form
+    public partial class MockupStergereProgramare : Form
     {
-        public MockupEditareProgramare()
+        public MockupStergereProgramare()
         {
             InitializeComponent();
         }
