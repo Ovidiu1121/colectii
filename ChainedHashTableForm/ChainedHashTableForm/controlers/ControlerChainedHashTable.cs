@@ -1,7 +1,9 @@
 ﻿using Colectii;
 using Colectii.colectii.hashtable;
 using Colectii.colectii.impl;
+using Colectii.exceptions;
 using Colectii.models;
+using Colectii.utils;
 using Colectii_.colectii.hashtable;
 using System;
 using System.Collections.Generic;
@@ -111,9 +113,8 @@ namespace Colectii_.examples
             table.delete(key);
         }
 
-        public void update(Programare oldValue, Programare newValue)
+        public bool suprapunere(Programare programare)
         {
-
             ILista<Lista<Programare>> lista = table.values();
 
             Node<Lista<Programare>> programari = lista.getIterator();
@@ -124,14 +125,46 @@ namespace Colectii_.examples
 
                 while (p!=null)
                 {
-                    if (p.Data.Equals(oldValue))
+                    if (p.Data.Equals(programare))
                     {
-                        p.Data=newValue;
-                        return;
+                        return true;
                     }
                     p=p.Next;
                 }
                 programari=programari.Next;
+            }
+            return false;
+        }
+
+        public void update(Programare oldValue, Programare newValue)
+        {
+
+            ILista<Lista<Programare>> lista = table.values();
+
+            Node<Lista<Programare>> programari = lista.getIterator();
+
+            if (suprapunere(newValue)==true)
+            {
+                throw new ProgramareSuprapunere(Constants.PROGRAMARE_INVALIDA_EXCEPTION);
+            }
+            else
+            {
+                while (programari!=null)
+                {
+                    Node<Programare> p = programari.Data.getIterator();
+
+                    while (p!=null)
+                    {
+                        if (p.Data.DataInceput.Equals(oldValue.DataInceput))
+                        {
+                            p.Data=newValue;
+                            this.load();
+                            return;
+                        }
+                        p=p.Next;
+                    }
+                    programari=programari.Next;
+                }
             }
 
         }

@@ -25,7 +25,9 @@ namespace ChainedHashTableForm.forms
 
             this.Size = new System.Drawing.Size(741, 403);
 
-            this.activepanel=new PnlStergeProgramare(this,persoana,controler);
+            Programare p1 = new Programare("Dct 1", "mihai", "adr1", new DateTime(2020, 3, 23), new DateTime(2020, 3, 20));
+
+            this.activepanel=new PnlMain(this,persoana,controler);
 
             this.Controls.Add(activepanel);
 

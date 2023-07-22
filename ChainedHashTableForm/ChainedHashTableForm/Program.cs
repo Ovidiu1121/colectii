@@ -23,15 +23,20 @@ namespace ChainedHashTableForm
 
             Persoana p = new Persoana("alex", 13, false);
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain(p));
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new FrmHome());
 
-            //ControlerChainedHashTable a = new ControlerChainedHashTable();
+            ControlerChainedHashTable a = new ControlerChainedHashTable();
 
-            //Programare p2 = a.getProgramare(p, new DateTime(2022, 8, 28));
+            Programare p2 = new Programare("Dct 2", "alex", "asdffgjasf", new DateTime(2050, 10, 2), new DateTime(2050, 10, 6));
 
-            //Debug.WriteLine(p2.ToString());
+            Programare p1 = new Programare("Dct 1", "mihai", "adr1", new DateTime(2020, 3, 23), new DateTime(2020, 3, 20));
+
+            a.update(p1, p2);
+            a.load();
+
+            Debug.WriteLine(p1.ToString());
 
         }
     }
