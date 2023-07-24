@@ -177,6 +177,8 @@
     <Compile Include="controlers\ControlerProgramare.cs" />
     <Compile Include="controlers\ControlerSimpleHashTable.cs" />
     <Compile Include="data\DataAcces.cs" />
+    <Compile Include="exceptions\PersoanaExistenta.cs" />
+    <Compile Include="exceptions\ConfirmareParola.cs" />
     <Compile Include="exceptions\EmptyField.cs" />
     <Compile Include="exceptions\ProgramareSuprapunere.cs" />
     <Compile Include="exceptions\WrongPerson.cs" />
@@ -246,6 +248,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="panels\PnlModificaProgramare.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="panels\PnlRegister.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="panels\PnlStergeProgramare.cs">

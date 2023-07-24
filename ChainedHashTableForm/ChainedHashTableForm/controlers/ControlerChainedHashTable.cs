@@ -48,6 +48,21 @@ namespace Colectii_.examples
 
         }
 
+        public void adaugarePersoana(Persoana key)
+        {
+
+            string sql = "insert into persoane(id,nume,varsta,password) value(@id,@nume,@varsta,@password)";
+
+            this.dataAcces.SaveData(sql, new
+            {
+                key.Id,
+                key.Nume,
+                key.Varsta,
+                key.Password
+            }, connectionString);
+
+        }
+
         public void afisare()
         {
             ILista<Persoana> a = table.keys();
@@ -161,7 +176,6 @@ namespace Colectii_.examples
                 newValue.DataSfarsit,
                 oldValue.Id
             }, connectionString);
-
         }
 
         public Persoana getPersoana(string password)

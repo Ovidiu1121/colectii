@@ -24,8 +24,8 @@ namespace ChainedHashTableForm.panels
         private TextBox txtnume;
         private Button btnlogin;
         private FrmHome frmHome;
-        private IControler<Persoana, Programare> controler = new ControlerChainedHashTable();
-
+        private ControlerChainedHashTable controler = new ControlerChainedHashTable();
+        private Button btnregister;
         public PnlLogIn(FrmHome frmHome)
         {
 
@@ -71,6 +71,12 @@ namespace ChainedHashTableForm.panels
             this.btnlogin.Text="Log in";
             this.btnlogin.Click+=new EventHandler(logare_Click);
 
+            this.btnregister=new Button();
+            this.Controls.Add(this.btnregister);
+            this.btnregister.Location=new Point(238, 250);
+            this.btnregister.Size=new Size(103, 30);
+            this.btnregister.Text="Register";
+            this.btnregister.Click+=new EventHandler(register_Click);
 
         }
 
@@ -102,5 +108,15 @@ namespace ChainedHashTableForm.panels
 
 
         }
+
+        public void register_Click(object sender, EventArgs e)
+        {
+
+            this.frmHome.Controls.Remove(this.frmHome.activepanel);
+            this.frmHome.activepanel=new PnlRegister(this.frmHome,this.controler);
+            this.frmHome.Controls.Add(this.frmHome.activepanel);
+
+        }
+
     }
 }
