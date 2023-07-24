@@ -46,12 +46,12 @@ namespace ChainedHashTableForm.panels
             this.lbltitlu.Text = "Adauga programare";
             this.lbltitlu.Font=new Font("Arial", 26, FontStyle.Regular);
 
-            this.lbldoctor = new Label();
-            this.Controls.Add(this.lbldoctor);
-            this.lbldoctor.Location = new Point(184, 134);
-            this.lbldoctor.Size=new Size(105, 20);
-            this.lbldoctor.Text = "Nume doctor";
-            this.lbldoctor.Font=new Font("Arial", 10, FontStyle.Regular);
+            //this.lbldoctor = new Label();
+            //this.Controls.Add(this.lbldoctor);
+            //this.lbldoctor.Location = new Point(184, 134);
+            //this.lbldoctor.Size=new Size(105, 20);
+            //this.lbldoctor.Text = "Nume doctor";
+            //this.lbldoctor.Font=new Font("Arial", 10, FontStyle.Regular);
 
             this.lbladresa = new Label();
             this.Controls.Add(this.lbladresa);
@@ -74,10 +74,10 @@ namespace ChainedHashTableForm.panels
             this.lbldatasfarsit.Text = "Data sfarsit";
             this.lbldatasfarsit.Font=new Font("Arial", 10, FontStyle.Regular);
 
-            this.txtdoctor=new TextBox();
-            this.Controls.Add(this.txtdoctor);
-            this.txtdoctor.Location=new Point(318, 134);
-            this.txtdoctor.Size=new Size(250, 22);
+            //this.txtdoctor=new TextBox();
+            //this.Controls.Add(this.txtdoctor);
+            //this.txtdoctor.Location=new Point(318, 134);
+            //this.txtdoctor.Size=new Size(250, 22);
 
             this.txtadresa=new TextBox();
             this.Controls.Add(this.txtadresa);
@@ -114,17 +114,17 @@ namespace ChainedHashTableForm.panels
         public void adaugare_Click(object sender, EventArgs e)
         {
 
-            if (this.txtadresa.Text.Equals("")||this.txtdoctor.Text.Equals("")||this.datainceput.Value>this.datasfarsit.Value)
+            if (this.txtadresa.Text.Equals("")||this.datainceput.Value>this.datasfarsit.Value)
             {
                 MessageBox.Show(Constants.SPATIU_NECOMPLETAT);
             }
             else
             {
 
-                Programare p=new Programare(this.txtdoctor.Text,this.persoana.Nume,this.txtadresa.Text,this.datainceput.Value,this.datasfarsit.Value);
+                Programare p=new Programare(persoana.Id,this.txtadresa.Text,this.datainceput.Value,this.datasfarsit.Value);
 
                 this.controler=new ControlerChainedHashTable();
-                this.controler.adaugare(this.persoana, p);
+                this.controler.adaugare(p);
 
                 this.frmMain.Controls.Remove(this.frmMain.activepanel);
                 this.frmMain.activepanel=new PnlMain(this.frmMain, this.persoana,this.controler);

@@ -19,8 +19,8 @@ namespace ChainedHashTableForm.panels
     {
         private Label lbltitlu;
         private Label lblnume;
-        private Label lblvarsta;
-        private TextBox txtvarsta;
+        private Label lblpassword;
+        private TextBox txtpassword;
         private TextBox txtnume;
         private Button btnlogin;
         private FrmHome frmHome;
@@ -47,22 +47,22 @@ namespace ChainedHashTableForm.panels
             this.lblnume.Text="Nume";
             this.lblnume.Font=new Font("Arial", 12, FontStyle.Regular);
 
-            this.lblvarsta = new Label();
-            this.Controls.Add(lblvarsta);
-            this.lblvarsta.Location=new Point(99, 167);
-            this.lblvarsta.Size=new Size(70, 16);
-            this.lblvarsta.Text="Varsta";
-            this.lblvarsta.Font=new Font("Arial", 12, FontStyle.Regular);
+            this.lblpassword = new Label();
+            this.Controls.Add(lblpassword);
+            this.lblpassword.Location=new Point(99, 167);
+            this.lblpassword.Size=new Size(70, 16);
+            this.lblpassword.Text="Parola";
+            this.lblpassword.Font=new Font("Arial", 12, FontStyle.Regular);
 
             this.txtnume=new TextBox();
             this.Controls.Add(this.txtnume);
             this.txtnume.Location = new Point(170, 117);
             this.txtnume.Size = new Size(288, 22);
 
-            this.txtvarsta=new TextBox();
-            this.Controls.Add(this.txtvarsta);
-            this.txtvarsta.Location = new Point(170, 161);
-            this.txtvarsta.Size = new Size(288, 22);
+            this.txtpassword=new TextBox();
+            this.Controls.Add(this.txtpassword);
+            this.txtpassword.Location = new Point(170, 161);
+            this.txtpassword.Size = new Size(288, 22);
 
             this.btnlogin=new Button();
             this.Controls.Add(this.btnlogin);
@@ -77,19 +77,19 @@ namespace ChainedHashTableForm.panels
         public void logare_Click(object sender, EventArgs e)
         {
 
-            if (this.txtvarsta.Text.Equals("")||this.txtnume.Text.Equals(""))
+            if (this.txtpassword.Text.Equals("")||this.txtnume.Text.Equals(""))
             {
                 throw new EmptyField(Constants.SPATIU_NECOMPLETAT);
             }
             else
             {
-                if(this.controler.isPersoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text))==false)
+                if(this.controler.isPersoana(this.txtnume.Text, this.txtpassword.Text)==false)
                 {
                     MessageBox.Show(Constants.WRONG_PERSON);
                 }
                 else
                 {
-                    Persoana p = this.controler.getPersoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text));
+                    Persoana p = this.controler.getPersoana(this.txtpassword.Text);
 
                     FrmMain main = new FrmMain(p);
                     frmHome.Hide();

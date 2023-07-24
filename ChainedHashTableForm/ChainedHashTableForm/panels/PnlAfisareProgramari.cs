@@ -68,13 +68,13 @@ namespace ChainedHashTableForm.panels
             dt.Columns.Add("Data inceput", typeof(DateTime));
             dt.Columns.Add("Data sfarsit", typeof(DateTime));
 
-            ILista<Programare> lista = this.controler.getProgramari(this.persoana);
+            ILista<Programare> lista = this.controler.getProgramariByClientId(this.persoana.Id);
 
             Node<Programare> p = lista.getIterator();
 
             while(p != null)
             {
-                dt.Rows.Add(p.Data.NumeDoctor,p.Data.Adresa,p.Data.DataInceput,p.Data.DataSfarsit);
+                dt.Rows.Add(p.Data.Id,p.Data.Adresa,p.Data.DataInceput,p.Data.DataSfarsit);
                 p=p.Next;
             }
 

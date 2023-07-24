@@ -12,7 +12,7 @@ using Colectii;
 
 namespace Colectii_.examples
 {
-    public class ControlerSimpleHashTable : IControler<Persoana, Programare>
+    public class ControlerSimpleHashTable //: IControler<Persoana, Programare>
     {
         private IHashTable<Persoana, Lista<Programare>> table;
 
@@ -22,20 +22,20 @@ namespace Colectii_.examples
             load();
         }
 
-        public void adaugare(Persoana key, Programare value)
+        public void adaugare( Programare value)
         {
-            //daca avem cheia
-            if (table.get(key)!=null)
-            {
-                table.get(key).addFinish(value);
-            }
-            else
-            {
-                Lista<Programare> t = new Lista<Programare>();
-                t.addFinish(value);
-                t.sort();
-                table.put(key, t);
-            }
+            ////daca avem cheia
+            //if (table.get(key)!=null)
+            //{
+            //    table.get(key).addFinish(value);
+            //}
+            //else
+            //{
+            //    Lista<Programare> t = new Lista<Programare>();
+            //    t.addFinish(value);
+            //    t.sort();
+            //    table.put(key, t);
+            //}
 
         }
 
@@ -59,7 +59,7 @@ namespace Colectii_.examples
                     Node<Programare> it = p.Data.getIterator();
                     while (it!=null)
                     {
-                        if (it.Data.NumeClient.Equals(persoana.Data.Nume))
+                        if (it.Data.IdClient.Equals(persoana.Data.Nume))
                         {
                             Console.WriteLine(it.Data.ToString());
                         }
@@ -78,7 +78,7 @@ namespace Colectii_.examples
             throw new NotImplementedException();
         }
 
-        public Programare getProgramare(Persoana key, DateTime datainceput)
+        public Programare getProgramare( DateTime datainceput)
         {
             throw new NotImplementedException();
         }
@@ -88,39 +88,39 @@ namespace Colectii_.examples
             throw new NotImplementedException();
         }
 
-        public bool isPersoana(string nume, int varsta)
+        public bool isPersoana(string nume, string password)
         {
             throw new NotImplementedException();
         }
 
         public void load()
         {
-            Persoana a = new Persoana("alex", 13, false);
-            Persoana b = new Persoana("mihai", 45, true);
-            Persoana c = new Persoana("vlad", 29, true);
+        //    Persoana a = new Persoana("alex", 13, false);
+        //    Persoana b = new Persoana("mihai", 45, true);
+        //    Persoana c = new Persoana("vlad", 29, true);
 
-            Programare p1 = new Programare("Dct 1", "mihai", "adr1", new DateTime(2020, 3, 23), new DateTime(2020, 3, 20));
-            Programare p2 = new Programare("Dct 2", "alex", "adr1", new DateTime(2019, 10, 2), new DateTime(2020, 10, 6));
-            Programare p3 = new Programare("Dct 3", "vlad", "adr1", new DateTime(2021, 5, 28), new DateTime(2020, 5, 30));
-            Programare p4 = new Programare("dcr 4", "mihai", "adr4", new DateTime(2008, 6, 8), new DateTime(2008, 6, 14));
-            Programare p5 = new Programare("Dct 5", "vlad", "adr1", new DateTime(2018, 2, 21), new DateTime(2018, 2, 23));
-            Programare p6 = new Programare("Dct 6", "mihai", "adr1", new DateTime(2013, 10, 2), new DateTime(2013, 10, 6));
-            Programare p7 = new Programare("Dct 7", "alex", "adr1", new DateTime(2022, 8, 28), new DateTime(2022, 8, 30));
-            Programare p8 = new Programare("dcr 8", "alex", "adr4", new DateTime(2007, 1, 8), new DateTime(2008, 1, 14));
+        //    Programare p1 = new Programare("Dct 1", "mihai", "adr1", new DateTime(2020, 3, 23), new DateTime(2020, 3, 20));
+        //    Programare p2 = new Programare("Dct 2", "alex", "adr1", new DateTime(2019, 10, 2), new DateTime(2020, 10, 6));
+        //    Programare p3 = new Programare("Dct 3", "vlad", "adr1", new DateTime(2021, 5, 28), new DateTime(2020, 5, 30));
+        //    Programare p4 = new Programare("dcr 4", "mihai", "adr4", new DateTime(2008, 6, 8), new DateTime(2008, 6, 14));
+        //    Programare p5 = new Programare("Dct 5", "vlad", "adr1", new DateTime(2018, 2, 21), new DateTime(2018, 2, 23));
+        //    Programare p6 = new Programare("Dct 6", "mihai", "adr1", new DateTime(2013, 10, 2), new DateTime(2013, 10, 6));
+        //    Programare p7 = new Programare("Dct 7", "alex", "adr1", new DateTime(2022, 8, 28), new DateTime(2022, 8, 30));
+        //    Programare p8 = new Programare("dcr 8", "alex", "adr4", new DateTime(2007, 1, 8), new DateTime(2008, 1, 14));
 
-            Lista<Programare> lista = new Lista<Programare>();
-            lista.addStart(p1);
-            lista.addStart(p2);
-            lista.addStart(p3);
-            lista.addStart(p4);
-            lista.addStart(p5);
-            lista.addStart(p6);
-            lista.addStart(p7);
-            lista.addStart(p8);
+        //    Lista<Programare> lista = new Lista<Programare>();
+        //    lista.addStart(p1);
+        //    lista.addStart(p2);
+        //    lista.addStart(p3);
+        //    lista.addStart(p4);
+        //    lista.addStart(p5);
+        //    lista.addStart(p6);
+        //    lista.addStart(p7);
+        //    lista.addStart(p8);
 
-            table.put(a, lista);
-            table.put(b, lista);
-            table.put(c, lista);
+        //    table.put(a, lista);
+        //    table.put(b, lista);
+        //    table.put(c, lista);
 
         }
 
