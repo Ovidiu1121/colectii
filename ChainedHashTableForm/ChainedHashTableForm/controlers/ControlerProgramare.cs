@@ -25,15 +25,15 @@ namespace Colectii_.examples
 
         public void load()
         {
-            Programare a = new Programare("Alex", "mihai", "str noua", new DateTime(2016, 4, 10), new DateTime(2016, 4, 1));
-            Programare b = new Programare("Cosmin", "vlad", "str cinci", new DateTime(2022, 8, 2), new DateTime(2022, 8, 6));
-            Programare c = new Programare("George", "max", "str doi", new DateTime(2023, 2, 10), new DateTime(2023, 2, 16));
-            Programare d = new Programare("Mihai", "sergiu", "str patru", new DateTime(2023, 1, 20), new DateTime(2023, 1, 28));
+            //Programare a = new Programare("Alex", "mihai", "str noua", new DateTime(2016, 4, 10), new DateTime(2016, 4, 1));
+            //Programare b = new Programare("Cosmin", "vlad", "str cinci", new DateTime(2022, 8, 2), new DateTime(2022, 8, 6));
+            //Programare c = new Programare("George", "max", "str doi", new DateTime(2023, 2, 10), new DateTime(2023, 2, 16));
+            //Programare d = new Programare("Mihai", "sergiu", "str patru", new DateTime(2023, 1, 20), new DateTime(2023, 1, 28));
 
-            lista.addFinish(a);
-            lista.addFinish(b);
-            lista.addFinish(c);
-            lista.addFinish(d);
+            //lista.addFinish(a);
+            //lista.addFinish(b);
+            //lista.addFinish(c);
+            //lista.addFinish(d);
 
         }
 
@@ -79,16 +79,16 @@ namespace Colectii_.examples
 
         }
 
-        public void delete(string numeDoctor, string numeClient)
+        public void delete(string Id, string IdClient)
         {
 
-            if (isProgramare(numeDoctor, numeClient)==false)
+            if (isProgramare(Id, IdClient)==false)
             {
                 throw new ProgramareSuprapunere(Constants.PROGRAMARE_NEEXISTENTA_EXCEPTION);
             }
             else
             {
-                Programare p = this.getProgramare(numeDoctor, numeClient);
+                Programare p = this.getProgramare(Id, IdClient);
                 int i = 0;
                 Node<Programare> aux = head;
 
@@ -132,13 +132,13 @@ namespace Colectii_.examples
             return false;
         }
 
-        public Programare getProgramare(string numeDoctor, string numeClient)
+        public Programare getProgramare(string Id, string IdClient)
         {
             Node<Programare> aux = head;
 
             while (aux!=null)
             {
-                if (aux.Data.NumeDoctor.Equals(numeDoctor)&&aux.Data.NumeClient.Equals(numeClient))
+                if (aux.Data.Id.Equals(Id)&&aux.Data.IdClient.Equals(IdClient))
                 {
                     return aux.Data;
                 }
@@ -147,13 +147,13 @@ namespace Colectii_.examples
             return null;
         }
 
-        public bool isProgramare(string numeDoctor, string numeClient)
+        public bool isProgramare(string Id, string IdClient)
         {
             Node<Programare> aux = head;
 
             while (aux!=null)
             {
-                if (aux.Data.NumeDoctor.Equals(numeDoctor)&&aux.Data.NumeClient.Equals(numeClient))
+                if (aux.Data.Id.Equals(Id)&&aux.Data.IdClient.Equals(IdClient))
                 {
                     return true;
                 }
@@ -163,7 +163,7 @@ namespace Colectii_.examples
 
         }
 
-        public void updateProgramare(string numedoctor, string numeclient, Programare p)
+        public void updateProgramare(string Id, string IdClient, Programare p)
         {
 
             if (suprapunere(p)==true)
@@ -176,7 +176,7 @@ namespace Colectii_.examples
 
                 while (aux!=null)
                 {
-                    if (aux.Data.NumeDoctor.Equals(numedoctor)&&aux.Data.NumeClient.Equals(numeclient))
+                    if (aux.Data.Id.Equals(Id)&&aux.Data.IdClient.Equals(IdClient))
                     {
                         aux.Data.Adresa=p.Adresa;
                         aux.Data.DataSfarsit=p.DataSfarsit;

@@ -23,15 +23,15 @@ namespace Colectii_.colectii.hashtable
 
         void removeProgramare(V value);
 
-        void adaugare(K key, V value);
+        void adaugare(V value);
 
-        K getPersoana(string nume,int varsta);
+        K getPersoana(string password);
 
-        bool isPersoana(string nume, int varsta);
+        bool isPersoana(string nume, string password);
 
         ILista<V> getProgramari(K key);
 
-        V getProgramare(K key,DateTime datainceput);
+        V getProgramare(DateTime datainceput);
 
     }
 }

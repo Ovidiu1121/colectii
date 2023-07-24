@@ -8,20 +8,21 @@ namespace Colectii.models
 {
     public class Persoana : IComparable<Persoana>
     {
+        private int id;
         private string nume;
         private int varsta;
-        private bool angajat;
+        private string password;
 
         public Persoana()
         {
 
         }
 
-        public Persoana(string nume, int varsta, bool angajat)
+        public Persoana(string nume, int varsta, string password)
         {
             this.nume=nume;
             this.varsta=varsta;
-            this.angajat=angajat;
+            this.password=password;
         }
 
         public string Nume
@@ -36,19 +37,25 @@ namespace Colectii.models
             set { this.varsta = value; }
         }
 
-        public bool Angajat
+        public string Password
         {
-            get { return this.angajat; }
-            set { this.angajat = value; }
+            get { return this.password; }
+            set { this.password = value; }
         }
 
+        public int Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
         public override string ToString()
         {
             string text = "";
 
+            text+="Id:"+this.id+", ";
             text+="Nume:"+this.nume+", ";
             text+="Varsta:"+this.varsta+", ";
-            text+="Angajat:"+this.angajat;
+            text+="Parola:"+this.password;
 
             return this.nume;
         }

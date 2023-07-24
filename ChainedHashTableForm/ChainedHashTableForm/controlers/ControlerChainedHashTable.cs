@@ -1,12 +1,16 @@
-﻿using Colectii;
+﻿using ChainedHashTableForm.data;
+using Colectii;
 using Colectii.colectii.hashtable;
 using Colectii.colectii.impl;
 using Colectii.exceptions;
 using Colectii.models;
 using Colectii.utils;
 using Colectii_.colectii.hashtable;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,29 +20,31 @@ namespace Colectii_.examples
     public class ControlerChainedHashTable : IControler<Persoana, Programare> 
     {
         private ChainedHashtable<Persoana, Lista<Programare>> table;
+        private string connectionString;
+        private DataAcces dataAcces;
 
         public ControlerChainedHashTable()
         {
             table=new ChainedHashtable<Persoana, Lista<Programare>>(10);
+            this.dataAcces = new DataAcces();
+            this.connectionString =GetConnection();
             load();
         }
 
-        public void adaugare(Persoana key, Programare value)
+        public void adaugare(Programare value)
         {
 
-            if (table.get(key) != null)
-            {
-                table.get(key).addFinish(value);
-            }
-            else
-            {
-                Lista<Programare> lista = new Lista<Programare>();
+            string sql = "insert into programari(Id,IdClient,adresa,dataInceput,dataSfarsit) value(@Id," +
+                "@IdClient,@adresa,@dataInceput,@dataSfarsit)";
 
-                lista.addFinish(value);
-                lista.sort();
-                table.put(key, lista);
-
-            }
+            this.dataAcces.SaveData(sql, new
+            {
+                value.Id,
+                value.IdClient,
+                value.Adresa,
+                value.DataInceput,
+                value.DataSfarsit
+            }, connectionString);
 
         }
 
@@ -63,7 +69,7 @@ namespace Colectii_.examples
 
                     while (programare!=null)
                     {
-                        if (programare.Data.NumeClient.Equals(persoana.Data.Nume))
+                        if (programare.Data.IdClient.Equals(persoana.Data.Id))
                         {
                             Console.WriteLine(programare.Data.ToString());
                         }
@@ -74,43 +80,49 @@ namespace Colectii_.examples
                 persoana=persoana.Next;
             }
 
+
+        }
+
+        public Lista<Programare> getProgramariByClientId(int idClient)
+        {
+            Lista<Programare>lista=new Lista<Programare>();
+            string sql = "select * from programari where idClient=@idClient";
+           
+            List<Programare> x= dataAcces.LoadData<Programare, dynamic>(sql, new {idClient}, connectionString);
+
+            x.ForEach(el =>
+            {
+                lista.addStart(el);
+            });
+
+            return lista;
+        }
+
+        public List<Persoana> getAllPersoane()
+        {
+            string sql = "select * from persoane";
+
+            return dataAcces.LoadData<Persoana, dynamic>(sql, new { }, connectionString);
         }
 
         public void load()
         {
-            Persoana a = new Persoana("alex", 13, false);
-            Persoana b = new Persoana("mihai", 45, true);
-            Persoana c = new Persoana("vlad", 29, true);
+            List<Persoana> lista = getAllPersoane();
 
-            Programare p1 = new Programare("Dct 1", "mihai", "adr1", new DateTime(2020, 3, 23), new DateTime(2020, 3, 20));
-            Programare p2 = new Programare("Dct 2", "alex", "adr2", new DateTime(2019, 10, 2), new DateTime(2020, 10, 6));
-            Programare p3 = new Programare("Dct 3", "vlad", "adr3", new DateTime(2021, 5, 28), new DateTime(2020, 5, 30));
-            Programare p4 = new Programare("Dct 4", "mihai", "adr4", new DateTime(2008, 6, 8), new DateTime(2008, 6, 14));
-            Programare p5 = new Programare("Dct 5", "vlad", "adr5", new DateTime(2018, 2, 21), new DateTime(2018, 2, 23));
-            Programare p6 = new Programare("Dct 6", "mihai", "adr6", new DateTime(2013, 10, 2), new DateTime(2013, 10, 6));
-            Programare p7 = new Programare("Dct 7", "alex", "adr7", new DateTime(2022, 8, 28), new DateTime(2022, 8, 30));
-            Programare p8 = new Programare("Dct 8", "alex", "adr8", new DateTime(2007, 1, 8), new DateTime(2008, 1, 14));
+            foreach (Persoana p in lista)
+            {
+                Lista<Programare> programari = getProgramariByClientId(p.Id);
 
-            Lista<Programare> lista = new Lista<Programare>();
-            lista.addStart(p1);
-            lista.addStart(p2);
-            lista.addStart(p3);
-            lista.addStart(p4);
-            lista.addStart(p5);
-            lista.addStart(p6);
-            lista.addStart(p7);
-            lista.addStart(p8);
-
-            table.put(a, lista);
-            table.put(b, lista);
-            table.put(c, lista);
-
+                table.put(p, programari);
+            }
 
         }
 
         public void remove(Persoana key)
         {
-            table.delete(key);
+            string sql = "delete from persoane where nume=@nume";
+
+            dataAcces.SaveData(sql, new { key.Nume }, connectionString);
         }
 
         public bool suprapunere(Programare programare)
@@ -139,37 +151,20 @@ namespace Colectii_.examples
         public void update(Programare oldValue, Programare newValue)
         {
 
-            ILista<Lista<Programare>> lista = table.values();
+            string sql = "update programari set adresa=@adresa,dataInceput=@dataInceput," +
+                "dataSfarsit=@dataSfarsit where id=@id";
 
-            Node<Lista<Programare>> programari = lista.getIterator();
-
-            if (suprapunere(newValue)==true)
+            this.dataAcces.SaveData(sql, new
             {
-                throw new ProgramareSuprapunere(Constants.PROGRAMARE_INVALIDA_EXCEPTION);
-            }
-            else
-            {
-                while (programari!=null)
-                {
-                    Node<Programare> p = programari.Data.getIterator();
-
-                    while (p!=null)
-                    {
-                        if (p.Data.DataInceput.Equals(oldValue.DataInceput))
-                        {
-                            p.Data=newValue;
-                            this.load();
-                            return;
-                        }
-                        p=p.Next;
-                    }
-                    programari=programari.Next;
-                }
-            }
+                newValue.Adresa,
+                newValue.DataInceput,
+                newValue.DataSfarsit,
+                oldValue.Id
+            }, connectionString);
 
         }
 
-        public Persoana getPersoana(string nume,int varsta)
+        public Persoana getPersoana(string password)
         {
             ILista<Persoana> a = table.keys();
 
@@ -178,7 +173,7 @@ namespace Colectii_.examples
             while (p!=null)
             {
 
-                if (p.Data.Nume.Equals(nume)&&p.Data.Varsta.Equals(varsta))
+                if (p.Data.Password.Equals(password))
                 {
                     return p.Data;
                 }
@@ -187,7 +182,7 @@ namespace Colectii_.examples
             return null;
         }
 
-        public bool isPersoana(string nume, int varsta)
+        public bool isPersoana(string nume, string password)
         {
 
             ILista<Persoana> a = table.keys();
@@ -196,7 +191,7 @@ namespace Colectii_.examples
 
             while (p!=null)
             {
-                if (p.Data.Nume.Equals(nume)&&p.Data.Varsta.Equals(varsta))
+                if (p.Data.Nume.Equals(nume)&&p.Data.Password.Equals(password))
                 {
                     return true;
                 }
@@ -219,7 +214,7 @@ namespace Colectii_.examples
 
                 while (programare!=null)
                 {
-                    if (programare.Data.NumeClient.Equals(key.Nume))
+                    if (programare.Data.IdClient.Equals(key.Nume))
                     {
                         ls.addFinish(programare.Data);
                     }
@@ -232,51 +227,40 @@ namespace Colectii_.examples
 
         }
 
-        public Programare getProgramare(Persoana key, DateTime datainceput)
+        public Programare getProgramare(DateTime datainceput)
         {
-            ILista<Lista<Programare>> lista = table.values();
+            string sql = "select * from programari where dataInceput=@dataInceput";
 
-            Node<Lista<Programare>> programari = lista.getIterator();
+            Lista<Programare> lista = new Lista<Programare>();
 
-            while (programari!=null)
+            List<Programare> x = dataAcces.LoadData<Programare, dynamic>(sql, new { datainceput }, connectionString);
+
+            x.ForEach(el =>
             {
-                Node<Programare> p = programari.Data.getIterator();
+                lista.addFinish(el);
 
-                while (p!=null)
-                {
-                    if (p.Data.NumeClient.Equals(key.Nume)&&p.Data.DataInceput.Equals(datainceput))
-                    {
-                        return p.Data;
-                    }
-                    p=p.Next;
-                }
-                programari=programari.Next;
-            }
-            return null;
+            });
+
+            Node<Programare> node=lista.getIterator();
+
+            return node.Data;
+          
         }
 
         public void removeProgramare(Programare value)
         {
 
-            ILista<Lista<Programare>> lista = table.values();
+            string sql = "delete from programari where dataInceput=@dataInceput";
 
-            Node<Lista<Programare>> programari = lista.getIterator();
+            this.dataAcces.SaveData(sql, new { value.DataInceput }, connectionString);
+        }
 
-            while (programari!=null)
-            {
-                Node<Programare> p = programari.Data.getIterator();
-
-                while (p!=null)
-                {
-                    if (p.Next != null && p.Next.Data.DataInceput.Equals(value.DataInceput))
-                    {
-                        p.Next = p.Next.Next;
-                        return; 
-                    }
-                    p=p.Next;
-                }
-                programari=programari.Next;
-            }
+        public string GetConnection()
+        {
+            string c = Directory.GetCurrentDirectory();
+            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(c).AddJsonFile("appsettings.json").Build();
+            string connectionStringIs = configuration.GetConnectionString("Default");
+            return connectionStringIs;
         }
 
     }
