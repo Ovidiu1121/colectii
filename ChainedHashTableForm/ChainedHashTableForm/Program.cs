@@ -22,7 +22,7 @@ namespace ChainedHashTableForm
         static void Main()
         {
 
-            Persoana p = new Persoana("alex", 13,"affs");
+            Persoana p = new Persoana("alex", 13,"affs",1);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

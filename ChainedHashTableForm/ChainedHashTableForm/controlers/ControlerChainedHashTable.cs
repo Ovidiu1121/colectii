@@ -51,14 +51,15 @@ namespace Colectii_.examples
         public void adaugarePersoana(Persoana key)
         {
 
-            string sql = "insert into persoane(id,nume,varsta,password) value(@id,@nume,@varsta,@password)";
+            string sql = "insert into persoane(id,nume,varsta,password,tip) value(@id,@nume,@varsta,@password,@tip)";
 
             this.dataAcces.SaveData(sql, new
             {
                 key.Id,
                 key.Nume,
                 key.Varsta,
-                key.Password
+                key.Password,
+                key.Tip
             }, connectionString);
 
         }

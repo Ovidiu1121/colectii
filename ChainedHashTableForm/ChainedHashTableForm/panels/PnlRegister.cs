@@ -28,6 +28,8 @@ namespace ChainedHashTableForm.panels
         private Button btnregister;
         private Button btnanulare;
         private FrmHome frmHome;
+        private Label lbltip;
+        private TextBox txttip;
 
         public PnlRegister(FrmHome frmHome,ControlerChainedHashTable controler)
         {
@@ -71,6 +73,13 @@ namespace ChainedHashTableForm.panels
             this.lblconfirmare.Text="Confirmare parola";
             this.lblconfirmare.Font=new Font("Arial", 12, FontStyle.Regular);
 
+            this.lbltip=new Label();
+            this.Controls.Add(this.lbltip);
+            this.lbltip.Location=new System.Drawing.Point(141, 309);
+            this.lbltip.Size=new System.Drawing.Size(69, 25);
+            this.lbltip.Text="Tip";
+            this.lbltip.Font=new Font("Arial", 12, FontStyle.Regular);
+
             this.txtnume=new TextBox();
             this.Controls.Add(this.txtnume);
             this.txtnume.Location=new System.Drawing.Point(314, 98);
@@ -93,9 +102,14 @@ namespace ChainedHashTableForm.panels
             this.txtconfirmare.Size=new Size(281, 22);
             this.txtconfirmare.UseSystemPasswordChar=true;
 
+            this.txttip=new TextBox();
+            this.Controls.Add(this.txttip);
+            this.txttip.Location=new System.Drawing.Point(314, 309);
+            this.txttip.Size=new Size(281, 22);
+
             this.btnregister=new Button();
             this.Controls.Add(this.btnregister);
-            this.btnregister.Location=new System.Drawing.Point(314, 299);
+            this.btnregister.Location=new System.Drawing.Point(314, 328);
             this.btnregister.Size=new Size(170, 34);
             this.btnregister.Text="Inregistrare";
             this.btnregister.Font=new Font("Arial", 10, FontStyle.Regular);
@@ -103,7 +117,7 @@ namespace ChainedHashTableForm.panels
 
             this.btnanulare=new Button();
             this.Controls.Add(this.btnanulare);
-            this.btnanulare.Location=new System.Drawing.Point(490, 299);
+            this.btnanulare.Location=new System.Drawing.Point(490, 328);
             this.btnanulare.Size=new Size(105, 34);
             this.btnanulare.Text="Anulare";
             this.btnanulare.Font=new Font("Arial", 10, FontStyle.Regular);
@@ -115,7 +129,7 @@ namespace ChainedHashTableForm.panels
         public void inregistrare_Click(object sender,EventArgs e)
         {
 
-            if(this.txtconfirmare.Text.Equals("")||this.txtnume.Text.Equals("")||this.txtparola.Text.Equals("")||this.txtvarsta.Text.Equals(""))
+            if(this.txtconfirmare.Text.Equals("")||this.txttip.Text.Equals("")||this.txtnume.Text.Equals("")||this.txtparola.Text.Equals("")||this.txtvarsta.Text.Equals(""))
             {
                 MessageBox.Show(Constants.SPATIU_NECOMPLETAT);
             }
@@ -134,7 +148,7 @@ namespace ChainedHashTableForm.panels
                     }
                 }
 
-                Persoana p = new Persoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text), this.txtparola.Text);
+                Persoana p = new Persoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text), this.txtparola.Text,int.Parse(this.txttip.Text));
 
                 this.controler.adaugarePersoana(p);
 
