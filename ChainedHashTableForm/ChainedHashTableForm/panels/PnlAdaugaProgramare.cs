@@ -1,4 +1,5 @@
-﻿using ChainedHashTableForm.forms;
+﻿using ChainedHashTableForm.exceptions;
+using ChainedHashTableForm.forms;
 using Colectii.models;
 using Colectii.utils;
 using Colectii_.colectii.hashtable;
@@ -46,13 +47,6 @@ namespace ChainedHashTableForm.panels
             this.lbltitlu.Text = "Adauga programare";
             this.lbltitlu.Font=new Font("Arial", 26, FontStyle.Regular);
 
-            //this.lbldoctor = new Label();
-            //this.Controls.Add(this.lbldoctor);
-            //this.lbldoctor.Location = new Point(184, 134);
-            //this.lbldoctor.Size=new Size(105, 20);
-            //this.lbldoctor.Text = "Nume doctor";
-            //this.lbldoctor.Font=new Font("Arial", 10, FontStyle.Regular);
-
             this.lbladresa = new Label();
             this.Controls.Add(this.lbladresa);
             this.lbladresa.Location = new Point(184, 187);
@@ -73,11 +67,6 @@ namespace ChainedHashTableForm.panels
             this.lbldatasfarsit.Size=new Size(105, 20);
             this.lbldatasfarsit.Text = "Data sfarsit";
             this.lbldatasfarsit.Font=new Font("Arial", 10, FontStyle.Regular);
-
-            //this.txtdoctor=new TextBox();
-            //this.Controls.Add(this.txtdoctor);
-            //this.txtdoctor.Location=new Point(318, 134);
-            //this.txtdoctor.Size=new Size(250, 22);
 
             this.txtadresa=new TextBox();
             this.Controls.Add(this.txtadresa);
@@ -120,12 +109,18 @@ namespace ChainedHashTableForm.panels
             }
             else
             {
-
                 Programare p=new Programare(persoana.Id,this.txtadresa.Text,this.datainceput.Value,this.datasfarsit.Value);
 
                 this.controler=new ControlerChainedHashTable();
-                this.controler.adaugare(p);
 
+                if (this.controler.addProgramareInPauza(this.persoana,p)==true)
+                {
+                    MessageBox.Show(Constants.PROGRAMARE_IN_PAUZA);
+                }
+                else
+                {
+                    this.controler.adaugare(p);
+                }
                 this.frmMain.Controls.Remove(this.frmMain.activepanel);
                 this.frmMain.activepanel=new PnlMain(this.frmMain, this.persoana,this.controler);
                 this.frmMain.Controls.Add(this.frmMain.activepanel);

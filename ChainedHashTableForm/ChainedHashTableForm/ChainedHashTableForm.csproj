@@ -180,6 +180,7 @@
     <Compile Include="exceptions\PersoanaExistenta.cs" />
     <Compile Include="exceptions\ConfirmareParola.cs" />
     <Compile Include="exceptions\EmptyField.cs" />
+    <Compile Include="exceptions\ProgramareInPauza.cs" />
     <Compile Include="exceptions\ProgramareSuprapunere.cs" />
     <Compile Include="exceptions\WrongPerson.cs" />
     <Compile Include="forms\FrmHome.cs">

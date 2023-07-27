@@ -298,5 +298,36 @@ namespace Colectii_.examples
 
         }
 
+        public bool addProgramareInPauza(Persoana persoana,Programare programare)
+        {
+
+            ILista<Programare> ls = new Lista<Programare>();
+
+            ILista<Lista<Programare>> lista = table.values();
+
+            Node<Lista<Programare>> x = lista.getIterator();
+            while (x!=null)
+            {
+                Node<Programare> p = x.Data.getIterator();
+
+                while (p!=null)
+                {
+                    if (p.Data.IdClient.Equals(persoana.Id))
+                    {
+                        if (programare.DataInceput.Month.Equals(p.Data.DataSfarsit.Month)&&programare.DataInceput.Year.Equals(p.Data.DataSfarsit.Year))
+                        {
+                            if (programare.DataInceput.Day-10<=p.Data.DataSfarsit.Day)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    p=p.Next;
+                }
+                x=x.Next;
+            }
+            return false;
+        }
+        
     }
 }

@@ -20,5 +20,7 @@ namespace Colectii.utils
 
         public static readonly string PERSOANA_EXISTENTA = "Exista deja o persoana cu numele introdus";
 
+        public static readonly string PROGRAMARE_IN_PAUZA = "Programarea nu a putut fi salvata deoarece in perioada respectiva aveti pauza!";
+
     }
 }
