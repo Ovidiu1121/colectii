@@ -12,17 +12,19 @@ namespace Colectii.models
         private string nume;
         private int varsta;
         private string password;
+        private int tip;
 
         public Persoana()
         {
 
         }
 
-        public Persoana(string nume, int varsta, string password)
+        public Persoana(string nume, int varsta, string password, int tip)
         {
             this.nume=nume;
             this.varsta=varsta;
             this.password=password;
+            this.tip=tip;
         }
 
         public string Nume
@@ -47,6 +49,12 @@ namespace Colectii.models
         {
             get { return this.id; }
             set { this.id = value; }
+        }
+
+        public int Tip
+        {
+            get { return this.tip; }
+            set { this.tip = value; }
         }
         public override string ToString()
         {

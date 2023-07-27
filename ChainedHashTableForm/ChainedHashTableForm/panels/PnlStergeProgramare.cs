@@ -83,7 +83,7 @@ namespace ChainedHashTableForm.panels
 
             DataTable dt = new DataTable();
 
-            dt.Columns.Add("Doctor", typeof(string));
+            dt.Columns.Add("Id", typeof(string));
             dt.Columns.Add("Adresa", typeof(string));
             dt.Columns.Add("Data inceput", typeof(DateTime));
             dt.Columns.Add("Data sfarsit", typeof(DateTime));

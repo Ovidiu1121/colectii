@@ -1,4 +1,5 @@
 ﻿using ChainedHashTableForm.panels;
+using Colectii_.examples;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,13 +14,16 @@ namespace ChainedHashTableForm.forms
 {
     public partial class FrmHome : Form
     {
-        private Panel activepanel;
+        public Panel activepanel;
+        public ControlerChainedHashTable controler;
 
         public FrmHome()
         {
             InitializeComponent();
 
-           // this.Size = new System.Drawing.Size(1000, 403);
+            this.Size = new System.Drawing.Size(750, 403);
+
+            this.controler=new ControlerChainedHashTable();
 
             this.activepanel=new PnlLogIn(this);
 

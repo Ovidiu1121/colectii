@@ -48,6 +48,22 @@ namespace Colectii_.examples
 
         }
 
+        public void adaugarePersoana(Persoana key)
+        {
+
+            string sql = "insert into persoane(id,nume,varsta,password,tip) value(@id,@nume,@varsta,@password,@tip)";
+
+            this.dataAcces.SaveData(sql, new
+            {
+                key.Id,
+                key.Nume,
+                key.Varsta,
+                key.Password,
+                key.Tip
+            }, connectionString);
+
+        }
+
         public void afisare()
         {
             ILista<Persoana> a = table.keys();
@@ -161,10 +177,9 @@ namespace Colectii_.examples
                 newValue.DataSfarsit,
                 oldValue.Id
             }, connectionString);
-
         }
 
-        public Persoana getPersoana(string password)
+        public Persoana getPersoana(string nume,string password)
         {
             ILista<Persoana> a = table.keys();
 
@@ -173,7 +188,7 @@ namespace Colectii_.examples
             while (p!=null)
             {
 
-                if (p.Data.Password.Equals(password))
+                if (p.Data.Password.Equals(password)&&p.Data.Nume.Equals(nume))
                 {
                     return p.Data;
                 }
@@ -261,6 +276,26 @@ namespace Colectii_.examples
             IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(c).AddJsonFile("appsettings.json").Build();
             string connectionStringIs = configuration.GetConnectionString("Default");
             return connectionStringIs;
+        }
+
+        public string getNume(int id)
+        {
+
+            ILista<Persoana> a = table.keys();
+
+            Node<Persoana> p = a.getIterator();
+
+            while (p!=null)
+            {
+
+                if (p.Data.Id.Equals(id))
+                {
+                    return p.Data.Nume;
+                }
+                p=p.Next;
+            }
+            return null;
+
         }
 
     }
