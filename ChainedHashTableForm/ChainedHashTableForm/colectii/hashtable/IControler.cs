@@ -25,7 +25,7 @@ namespace Colectii_.colectii.hashtable
 
         void adaugare(V value);
 
-        K getPersoana(string password);
+        K getPersoana(string nume,string password);
 
         bool isPersoana(string nume, string password);
 

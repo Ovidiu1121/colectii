@@ -17,11 +17,11 @@ namespace ChainedHashTableForm.panels
 {
     public class PnlAfisareProgramari:Panel
     {
-        private DataGridView grid;
         private FrmMain frmMain;
         private ControlerChainedHashTable controler;
         private Persoana persoana;
         private Button btngomain;
+        private Panel panel;
 
         public PnlAfisareProgramari(FrmMain frmMain, Persoana persoana,ControlerChainedHashTable controler)
         {
@@ -31,10 +31,11 @@ namespace ChainedHashTableForm.panels
 
             this.Size = new Size(741, 403);
 
-            this.grid = new DataGridView();
-            this.Controls.Add(grid);
-            this.grid.Location=new Point(100, 100);
-            this.grid.Size = new Size(500, 100);
+            this.panel=new Panel();
+            this.Controls.Add(this.panel);
+            this.panel.Location = new Point(66, 36);
+            this.panel.Size = new Size(580, 260);
+            //this.panel.BorderStyle=BorderStyle.Fixed3D;
 
             this.btngomain = new Button();
             this.Controls.Add(this.btngomain);
@@ -43,7 +44,14 @@ namespace ChainedHashTableForm.panels
             this.btngomain.Text="go back";
             this.btngomain.Click+=new EventHandler(goback_Click);
 
-            populate();
+            if (persoana.Tip==1)
+            {
+                createDoctorCards(4);
+            }
+            else
+            {
+                createClientCards(4);
+            }
 
             
 
@@ -58,27 +66,72 @@ namespace ChainedHashTableForm.panels
 
         }
 
-        public void populate()
+        public void createDoctorCards(int nrColumns)
         {
-
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("Id", typeof(string));
-            dt.Columns.Add("Adresa", typeof(string));
-            dt.Columns.Add("Data inceput", typeof(DateTime));
-            dt.Columns.Add("Data sfarsit", typeof(DateTime));
 
             ILista<Programare> lista = this.controler.getProgramariByClientId(this.persoana.Id);
 
             Node<Programare> p = lista.getIterator();
 
+            int x = 20, y = 20, contor = 0;
+
             while(p != null)
             {
-                dt.Rows.Add(p.Data.Id,p.Data.Adresa,p.Data.DataInceput,p.Data.DataSfarsit);
+                Panel pnl = new PnlCardDoctor(p.Data.Id,this.controler.getNume(p.Data.Id), p.Data.Adresa, p.Data.DataInceput, p.Data.DataSfarsit);
+
+                pnl.Location = new Point(x,y);
+                pnl.Size = new Size(120, 150);
+                this.panel.Controls.Add(pnl);
+                contor++;
+
+                x+=130;
+
+                if (contor%nrColumns==0)
+                {
+                    x=20;
+                    y+=160;
+                }
+                
+                if (y>this.panel.Height)
+                {
+                    this.panel.AutoScroll = true;
+                }
                 p=p.Next;
             }
+        }
 
-            grid.DataSource = dt;
+        public void createClientCards(int nrColumns)
+        {
+
+            ILista<Programare> lista = this.controler.getProgramariByClientId(this.persoana.Id);
+
+            Node<Programare> p = lista.getIterator();
+
+            int x = 20, y = 20, contor = 0;
+
+            while (p != null)
+            {
+                Panel pnl = new PnlCardClient( p.Data.Id, p.Data.Adresa, p.Data.DataInceput, p.Data.DataSfarsit);
+
+                pnl.Location = new Point(x, y);
+                pnl.Size = new Size(110, 150);
+                this.panel.Controls.Add(pnl);
+                contor++;
+
+                x+=130;
+
+                if (contor%nrColumns==0)
+                {
+                    x=20;
+                    y+=160;
+                }
+
+                if (y>this.panel.Height)
+                {
+                    this.panel.AutoScroll = true;
+                }
+                p=p.Next;
+            }
 
         }
 

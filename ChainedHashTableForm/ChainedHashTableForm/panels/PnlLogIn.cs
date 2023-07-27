@@ -95,7 +95,7 @@ namespace ChainedHashTableForm.panels
                 }
                 else
                 {
-                    Persoana p = this.controler.getPersoana(this.txtpassword.Text);
+                    Persoana p = this.controler.getPersoana(this.txtnume.Text,this.txtpassword.Text);
 
                     FrmMain main = new FrmMain(p);
                     frmHome.Hide();

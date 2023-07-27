@@ -206,6 +206,18 @@
     <Compile Include="mockups\MockupAfisareProgramari.Designer.cs">
       <DependentUpon>MockupAfisareProgramari.cs</DependentUpon>
     </Compile>
+    <Compile Include="mockups\MockupCardClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockups\MockupCardClient.Designer.cs">
+      <DependentUpon>MockupCardClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mockups\MockupCardDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mockups\MockupCardDoctor.Designer.cs">
+      <DependentUpon>MockupCardDoctor.cs</DependentUpon>
+    </Compile>
     <Compile Include="mockups\MockupRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +253,12 @@
     <Compile Include="panels\PnlAlegeProgramare.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="panels\PnlCardClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="panels\PnlCardDoctor.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="panels\PnlLogIn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -270,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="mockups\MockupAfisareProgramari.resx">
       <DependentUpon>MockupAfisareProgramari.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockups\MockupCardClient.resx">
+      <DependentUpon>MockupCardClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mockups\MockupCardDoctor.resx">
+      <DependentUpon>MockupCardDoctor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mockups\MockupRegister.resx">
       <DependentUpon>MockupRegister.cs</DependentUpon>
