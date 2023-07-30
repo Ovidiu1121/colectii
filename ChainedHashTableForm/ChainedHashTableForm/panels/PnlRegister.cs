@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChainedHashTableForm.exceptions;
+using Colectii_.exceptions;
 
 namespace ChainedHashTableForm.panels
 {
@@ -125,17 +127,16 @@ namespace ChainedHashTableForm.panels
 
         }
 
-
-        public void inregistrare_Click(object sender,EventArgs e)
+        public void inregistrare_exceptii()
         {
 
-            if(this.txtconfirmare.Text.Equals("")||this.txttip.Text.Equals("")||this.txtnume.Text.Equals("")||this.txtparola.Text.Equals("")||this.txtvarsta.Text.Equals(""))
+            if (this.txtconfirmare.Text.Equals("")||this.txttip.Text.Equals("")||this.txtnume.Text.Equals("")||this.txtparola.Text.Equals("")||this.txtvarsta.Text.Equals(""))
             {
-                MessageBox.Show(Constants.SPATIU_NECOMPLETAT);
+                throw new EmptyFieldException(Constants.SPATIU_NECOMPLETAT);
             }
             else if (this.controler.isPersoana(this.txtnume.Text, this.txtparola.Text)==true)
             {
-                MessageBox.Show(Constants.PERSOANA_EXISTENTA);
+                throw new PersoanaExistentaException(Constants.PERSOANA_EXISTENTA);
             }
             else
             {
@@ -143,12 +144,12 @@ namespace ChainedHashTableForm.panels
                 {
                     if (this.txtconfirmare.Text.Equals(this.txtparola.Text)==false)
                     {
-                        MessageBox.Show(Constants.PAROLA_GRESITA);
-                        return;
+                        throw new ConfirmareParolaException(Constants.PAROLA_GRESITA);
+
                     }
                 }
 
-                Persoana p = new Persoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text), this.txtparola.Text,int.Parse(this.txttip.Text));
+                Persoana p = new Persoana(this.txtnume.Text, int.Parse(this.txtvarsta.Text), this.txtparola.Text, int.Parse(this.txttip.Text));
 
                 this.controler.adaugarePersoana(p);
 
@@ -156,6 +157,27 @@ namespace ChainedHashTableForm.panels
                 this.frmHome.activepanel=new PnlLogIn(this.frmHome);
                 this.frmHome.Controls.Add(this.frmHome.activepanel);
             }
+
+        }
+
+        public void inregistrare_Click(object sender,EventArgs e)
+        {
+            try
+            {
+                inregistrare_exceptii();
+
+            }catch (ConfirmareParolaException  exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            catch (EmptyFieldException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }catch (PersoanaExistentaException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
 
         }
 

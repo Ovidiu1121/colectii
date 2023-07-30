@@ -121,7 +121,7 @@ namespace ChainedHashTableForm.panels
         {
             if (this.txtadresa.Text.Equals(""))
             {
-                throw new EmptyField(Constants.SPATIU_NECOMPLETAT);
+                throw new EmptyFieldException(Constants.SPATIU_NECOMPLETAT);
             }
             else
             {

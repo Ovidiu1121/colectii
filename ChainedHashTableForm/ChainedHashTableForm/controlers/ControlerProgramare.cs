@@ -84,7 +84,7 @@ namespace Colectii_.examples
 
             if (isProgramare(Id, IdClient)==false)
             {
-                throw new ProgramareSuprapunere(Constants.PROGRAMARE_NEEXISTENTA_EXCEPTION);
+                throw new SuprapunereProgramareException(Constants.PROGRAMARE_NEEXISTENTA_EXCEPTION);
             }
             else
             {
@@ -109,7 +109,7 @@ namespace Colectii_.examples
         {
             if (suprapunere(p)==true)
             {
-                throw new ProgramareSuprapunere(Constants.PROGRAMARE_INVALIDA_EXCEPTION);
+                throw new SuprapunereProgramareException(Constants.PROGRAMARE_INVALIDA_EXCEPTION);
             }
             else
             {
@@ -168,7 +168,7 @@ namespace Colectii_.examples
 
             if (suprapunere(p)==true)
             {
-                throw new ProgramareSuprapunere(Constants.PROGRAMARE_INVALIDA_EXCEPTION);
+                throw new SuprapunereProgramareException(Constants.PROGRAMARE_INVALIDA_EXCEPTION);
             }
             else
             {

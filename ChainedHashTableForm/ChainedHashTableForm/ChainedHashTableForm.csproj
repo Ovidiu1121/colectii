@@ -177,11 +177,11 @@
     <Compile Include="controlers\ControlerProgramare.cs" />
     <Compile Include="controlers\ControlerSimpleHashTable.cs" />
     <Compile Include="data\DataAcces.cs" />
-    <Compile Include="exceptions\PersoanaExistenta.cs" />
-    <Compile Include="exceptions\ConfirmareParola.cs" />
-    <Compile Include="exceptions\EmptyField.cs" />
-    <Compile Include="exceptions\ProgramareInPauza.cs" />
-    <Compile Include="exceptions\ProgramareSuprapunere.cs" />
+    <Compile Include="exceptions\PersoanaExistentaException.cs" />
+    <Compile Include="exceptions\ConfirmareParolaException.cs" />
+    <Compile Include="exceptions\EmptyFieldException.cs" />
+    <Compile Include="exceptions\ProgramareInPauzaException.cs" />
+    <Compile Include="exceptions\SuprapunereProgramareException.cs" />
     <Compile Include="exceptions\WrongPerson.cs" />
     <Compile Include="forms\FrmHome.cs">
       <SubType>Form</SubType>

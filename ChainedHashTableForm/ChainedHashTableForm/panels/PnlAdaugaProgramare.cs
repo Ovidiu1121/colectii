@@ -1,5 +1,6 @@
 ﻿using ChainedHashTableForm.exceptions;
 using ChainedHashTableForm.forms;
+using Colectii.exceptions;
 using Colectii.models;
 using Colectii.utils;
 using Colectii_.colectii.hashtable;
@@ -100,30 +101,56 @@ namespace ChainedHashTableForm.panels
 
         }
 
-        public void adaugare_Click(object sender, EventArgs e)
+        public void adaugare()
         {
 
             if (this.txtadresa.Text.Equals("")||this.datainceput.Value>this.datasfarsit.Value)
             {
-                MessageBox.Show(Constants.SPATIU_NECOMPLETAT);
+                throw new EmptyFieldException(Constants.SPATIU_NECOMPLETAT);
             }
             else
             {
-                Programare p=new Programare(persoana.Id,this.txtadresa.Text,this.datainceput.Value,this.datasfarsit.Value);
+                Programare p = new Programare(persoana.Id, this.txtadresa.Text, this.datainceput.Value, this.datasfarsit.Value);
 
                 this.controler=new ControlerChainedHashTable();
 
-                if (this.controler.addProgramareInPauza(this.persoana,p)==true)
+                this.controler.suprapunere(p);
+
+                if (this.persoana.Tip.Equals(1))
                 {
-                    MessageBox.Show(Constants.PROGRAMARE_IN_PAUZA);
+                    if (this.controler.addProgramareInPauza(this.persoana, p)==true)
+                    {
+                        throw new ProgramareInPauzaException(Constants.PROGRAMARE_IN_PAUZA);
+                    }
                 }
-                else
-                {
-                    this.controler.adaugare(p);
-                }
+                this.controler.adaugare(p);
+
                 this.frmMain.Controls.Remove(this.frmMain.activepanel);
-                this.frmMain.activepanel=new PnlMain(this.frmMain, this.persoana,this.controler);
+                this.frmMain.activepanel=new PnlMain(this.frmMain, this.persoana, this.controler);
                 this.frmMain.Controls.Add(this.frmMain.activepanel);
+
+            }
+
+        }
+
+        public void adaugare_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                adaugare();
+            }catch (EmptyFieldException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }catch (ProgramareInPauzaException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }catch(SuprapunereProgramareException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
 
             }
 

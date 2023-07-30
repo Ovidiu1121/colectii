@@ -33,6 +33,7 @@ namespace Colectii_.examples
 
         public void adaugare(Programare value)
         {
+           
 
             string sql = "insert into programari(Id,IdClient,adresa,dataInceput,dataSfarsit) value(@Id," +
                 "@IdClient,@adresa,@dataInceput,@dataSfarsit)";
@@ -141,7 +142,7 @@ namespace Colectii_.examples
             dataAcces.SaveData(sql, new { key.Nume }, connectionString);
         }
 
-        public bool suprapunere(Programare programare)
+        public void suprapunere(Programare programare)
         {
             ILista<Lista<Programare>> lista = table.values();
 
@@ -155,13 +156,12 @@ namespace Colectii_.examples
                 {
                     if (p.Data.Equals(programare))
                     {
-                        return true;
+                        throw new SuprapunereProgramareException(Constants.PROGRAMARE_INVALIDA_EXCEPTION);
                     }
                     p=p.Next;
                 }
                 programari=programari.Next;
             }
-            return false;
         }
 
         public void update(Programare oldValue, Programare newValue)
@@ -270,14 +270,6 @@ namespace Colectii_.examples
             this.dataAcces.SaveData(sql, new { value.DataInceput }, connectionString);
         }
 
-        public string GetConnection()
-        {
-            string c = Directory.GetCurrentDirectory();
-            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(c).AddJsonFile("appsettings.json").Build();
-            string connectionStringIs = configuration.GetConnectionString("Default");
-            return connectionStringIs;
-        }
-
         public string getNume(int id)
         {
 
@@ -316,7 +308,7 @@ namespace Colectii_.examples
                     {
                         if (programare.DataInceput.Month.Equals(p.Data.DataSfarsit.Month)&&programare.DataInceput.Year.Equals(p.Data.DataSfarsit.Year))
                         {
-                            if (programare.DataInceput.Day-10<=p.Data.DataSfarsit.Day)
+                            if (programare.DataInceput.Day<=p.Data.DataSfarsit.Day+10&&programare.DataInceput.Day>p.Data.DataSfarsit.Day)
                             {
                                 return true;
                             }
@@ -328,6 +320,14 @@ namespace Colectii_.examples
             }
             return false;
         }
-        
+
+        public string GetConnection()
+        {
+            string c = Directory.GetCurrentDirectory();
+            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(c).AddJsonFile("appsettings.json").Build();
+            string connectionStringIs = configuration.GetConnectionString("Default");
+            return connectionStringIs;
+        }
+
     }
 }

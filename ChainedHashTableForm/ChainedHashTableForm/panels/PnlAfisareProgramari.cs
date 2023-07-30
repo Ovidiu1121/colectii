@@ -91,8 +91,8 @@ namespace ChainedHashTableForm.panels
                     x=20;
                     y+=160;
                 }
-                
-                if (y>this.panel.Height)
+
+                if (y>this.panel.Height-160)
                 {
                     this.panel.AutoScroll = true;
                 }
@@ -126,7 +126,7 @@ namespace ChainedHashTableForm.panels
                     y+=160;
                 }
 
-                if (y>this.panel.Height)
+                if (y>this.panel.Height-160)
                 {
                     this.panel.AutoScroll = true;
                 }

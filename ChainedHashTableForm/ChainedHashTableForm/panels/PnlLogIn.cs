@@ -85,7 +85,7 @@ namespace ChainedHashTableForm.panels
 
             if (this.txtpassword.Text.Equals("")||this.txtnume.Text.Equals(""))
             {
-                throw new EmptyField(Constants.SPATIU_NECOMPLETAT);
+                throw new EmptyFieldException(Constants.SPATIU_NECOMPLETAT);
             }
             else
             {

@@ -8,7 +8,7 @@ namespace Colectii.utils
 {
     public class Constants
     {
-        public static readonly string PROGRAMARE_INVALIDA_EXCEPTION = "programre invalida";
+        public static readonly string PROGRAMARE_INVALIDA_EXCEPTION = "Aveti deja o programare in perioada data";
 
         public static readonly string PROGRAMARE_NEEXISTENTA_EXCEPTION = "programarea nu exista";
 
@@ -18,7 +18,7 @@ namespace Colectii.utils
 
         public static readonly string PAROLA_GRESITA = "Parola nu corespunde";
 
-        public static readonly string PERSOANA_EXISTENTA = "Exista deja o persoana cu numele introdus";
+        public static readonly string PERSOANA_EXISTENTA = "Exista deja o persoana cu numele si parola introduse";
 
         public static readonly string PROGRAMARE_IN_PAUZA = "Programarea nu a putut fi salvata deoarece in perioada respectiva aveti pauza!";
 

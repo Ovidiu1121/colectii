@@ -34,11 +34,13 @@ namespace ChainedHashTableForm
 
             //Programare pr=new Programare(22,"adr33",new DateTime(2005,1,10),new DateTime(2000,1,25));
 
-            //Programare pr2 = new Programare(1, "adr1", new DateTime(2013, 10, 2), new DateTime(2013,10,8));
+            //Programare pr2 = new Programare(1, "adr1", new DateTime(2023, 7, 21), new DateTime(2023,7,24));
 
             //a.update(pr2,pr);
 
-            //Debug.WriteLine(a.addProgramareInPauza(pr));
+            // a.suprapunere(pr2);
+
+            //Debug.WriteLine(a.afisare);
 
         }
     }
