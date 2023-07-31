@@ -149,10 +149,6 @@ namespace ChainedHashTableForm.panels
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-
-            }
 
         }
 

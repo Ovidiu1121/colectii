@@ -1,4 +1,5 @@
 ﻿using ChainedHashTableForm.data;
+using ChainedHashTableForm.exceptions;
 using Colectii;
 using Colectii.colectii.hashtable;
 using Colectii.colectii.impl;
@@ -139,7 +140,14 @@ namespace Colectii_.examples
         {
             string sql = "delete from persoane where nume=@nume";
 
-            dataAcces.SaveData(sql, new { key.Nume }, connectionString);
+            try
+            {
+                dataAcces.SaveData(sql, new { key.Nume }, connectionString);
+
+            }catch (Exception ex)
+            {
+                throw new ServiceException(Constants.CONECTARE_DB_EXCEPTION);
+            }
         }
 
         public void suprapunere(Programare programare)
@@ -170,13 +178,22 @@ namespace Colectii_.examples
             string sql = "update programari set adresa=@adresa,dataInceput=@dataInceput," +
                 "dataSfarsit=@dataSfarsit where id=@id";
 
-            this.dataAcces.SaveData(sql, new
+            try
             {
-                newValue.Adresa,
-                newValue.DataInceput,
-                newValue.DataSfarsit,
-                oldValue.Id
-            }, connectionString);
+                this.dataAcces.SaveData(sql, new
+                {
+                    newValue.Adresa,
+                    newValue.DataInceput,
+                    newValue.DataSfarsit,
+                    oldValue.Id
+                }, connectionString);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(Constants.CONECTARE_DB_EXCEPTION);
+            }
+
         }
 
         public Persoana getPersoana(string nume,string password)
@@ -267,7 +284,14 @@ namespace Colectii_.examples
 
             string sql = "delete from programari where dataInceput=@dataInceput";
 
-            this.dataAcces.SaveData(sql, new { value.DataInceput }, connectionString);
+            try
+            {
+
+                this.dataAcces.SaveData(sql, new {/* value.DataInceput*/ }, connectionString);
+            }catch (Exception ex)
+            {
+                throw new ServiceException(Constants.CONECTARE_DB_EXCEPTION);
+            }
         }
 
         public string getNume(int id)

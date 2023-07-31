@@ -22,5 +22,7 @@ namespace Colectii.utils
 
         public static readonly string PROGRAMARE_IN_PAUZA = "Programarea nu a putut fi salvata deoarece in perioada respectiva aveti pauza!";
 
+        public static readonly string CONECTARE_DB_EXCEPTION = "Conectarea la bada de deate a esuat";
+
     }
 }

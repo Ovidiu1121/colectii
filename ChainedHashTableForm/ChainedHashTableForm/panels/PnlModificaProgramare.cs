@@ -1,4 +1,5 @@
-﻿using ChainedHashTableForm.forms;
+﻿using ChainedHashTableForm.exceptions;
+using ChainedHashTableForm.forms;
 using Colectii.models;
 using Colectii.utils;
 using Colectii_.examples;
@@ -49,12 +50,6 @@ namespace ChainedHashTableForm.panels
             this.lbltitlu.Text = "Modifica Programare";
             this.lbltitlu.Font=new Font("Arial", 26, FontStyle.Regular);
 
-            //this.lbldoctor = new Label();
-            //this.Controls.Add(this.lbldoctor);
-            //this.lbldoctor.Location = new Point(160, 110);
-            //this.lbldoctor.Size=new Size(105, 20);
-            //this.lbldoctor.Text = "Nume doctor";
-            //this.lbldoctor.Font=new Font("Arial", 10, FontStyle.Regular);
 
             this.lbladresa = new Label();
             this.Controls.Add(this.lbladresa);
@@ -77,11 +72,6 @@ namespace ChainedHashTableForm.panels
             this.lbldatasfarsit.Text = "Data sfarsit";
             this.lbldatasfarsit.Font=new Font("Arial", 10, FontStyle.Regular);
 
-            //this.txtdoctor=new TextBox();
-            //this.Controls.Add(this.txtdoctor);
-            //this.txtdoctor.Location=new Point(290, 110);
-            //this.txtdoctor.Size=new Size(250, 22);
-            //this.txtdoctor.Text=programare.Id.ToString();
 
             this.txtadresa=new TextBox();
             this.Controls.Add(this.txtadresa);
@@ -117,23 +107,38 @@ namespace ChainedHashTableForm.panels
 
         }
 
-        public void update_Click(object sender, EventArgs e)
+        public void update()
         {
+
             if (this.txtadresa.Text.Equals(""))
             {
                 throw new EmptyFieldException(Constants.SPATIU_NECOMPLETAT);
             }
             else
             {
-                Programare p = new Programare(this.programare.Id,this.persoana.Id, this.txtadresa.Text,
+                Programare p = new Programare(this.programare.Id, this.persoana.Id, this.txtadresa.Text,
                     this.programare.DataInceput, this.programare.DataSfarsit);
-
+                
                 this.controler.update(this.programare, p);
                 this.frmMain.Controls.Remove(this.frmMain.activepanel);
                 this.frmMain.activepanel=new PnlMain(this.frmMain, this.persoana, this.controler);
                 this.frmMain.Controls.Add(this.frmMain.activepanel);
             }
 
+        }
+
+        public void update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                update();
+            }catch (EmptyFieldException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }catch (ServiceException ex)
+            {
+                MessageBox.Show("Nu s-a putut efectua modificarea.\nIncercati din nou. ");
+            }
 
         }
 

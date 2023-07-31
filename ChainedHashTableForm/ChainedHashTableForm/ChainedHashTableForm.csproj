@@ -181,6 +181,7 @@
     <Compile Include="exceptions\ConfirmareParolaException.cs" />
     <Compile Include="exceptions\EmptyFieldException.cs" />
     <Compile Include="exceptions\ProgramareInPauzaException.cs" />
+    <Compile Include="exceptions\ServiceException.cs" />
     <Compile Include="exceptions\SuprapunereProgramareException.cs" />
     <Compile Include="exceptions\WrongPerson.cs" />
     <Compile Include="forms\FrmHome.cs">

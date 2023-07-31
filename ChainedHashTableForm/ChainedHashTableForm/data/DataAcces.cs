@@ -20,7 +20,6 @@ namespace ChainedHashTableForm.data
                 List<T> rows = connection.Query<T>(sqlStatement, parameters).ToList();
 
                 return rows;
-
             }
         }
 
@@ -30,9 +29,7 @@ namespace ChainedHashTableForm.data
 
             using (IDbConnection connection = new MySqlConnection(connectionString))
             {
-
                 connection.Execute(sqlstatement, parameters);
-
             }
         }
 

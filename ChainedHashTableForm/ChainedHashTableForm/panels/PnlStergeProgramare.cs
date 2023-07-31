@@ -1,4 +1,5 @@
-﻿using ChainedHashTableForm.forms;
+﻿using ChainedHashTableForm.exceptions;
+using ChainedHashTableForm.forms;
 using Colectii;
 using Colectii.colectii.impl;
 using Colectii.models;
@@ -114,13 +115,25 @@ namespace ChainedHashTableForm.panels
 
         }
 
-        public void sterge_Click(object sender, EventArgs e)
+        public void stergere()
         {
             this.controler.removeProgramare(this.programare);
 
             this.frmMain.Controls.Remove(this.frmMain.activepanel);
             this.frmMain.activepanel=new PnlMain(this.frmMain, this.persoana, this.controler);
             this.frmMain.Controls.Add(this.frmMain.activepanel);
+
+        }
+
+        public void sterge_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                stergere();
+            }catch (ServiceException ex)
+            {
+                MessageBox.Show("Nu s-a putut efectua stergerea.\nIncercati din nou.");
+            }
 
         }
 
