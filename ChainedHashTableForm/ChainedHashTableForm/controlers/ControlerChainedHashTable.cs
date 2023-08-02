@@ -287,7 +287,7 @@ namespace Colectii_.examples
             try
             {
 
-                this.dataAcces.SaveData(sql, new {/* value.DataInceput*/ }, connectionString);
+                this.dataAcces.SaveData(sql, new { value.DataInceput }, connectionString);
             }catch (Exception ex)
             {
                 throw new ServiceException(Constants.CONECTARE_DB_EXCEPTION);

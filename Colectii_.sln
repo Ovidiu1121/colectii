@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colectii_", "Colectii_\Cole
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewChainedHashTable", "ViewChainedHashTable\ViewChainedHashTable.csproj", "{99D69882-E9AB-4DD1-8DA3-1ACB6ABE3C85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{C79CA498-5616-4BBE-A172-7EB5C3593A97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{99D69882-E9AB-4DD1-8DA3-1ACB6ABE3C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99D69882-E9AB-4DD1-8DA3-1ACB6ABE3C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99D69882-E9AB-4DD1-8DA3-1ACB6ABE3C85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C79CA498-5616-4BBE-A172-7EB5C3593A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79CA498-5616-4BBE-A172-7EB5C3593A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79CA498-5616-4BBE-A172-7EB5C3593A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79CA498-5616-4BBE-A172-7EB5C3593A97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
