@@ -30,7 +30,7 @@ namespace ChainedHashTableForm
 
             // ControlerChainedHashTable a = new ControlerChainedHashTable();
 
-            //Persoana b = new Persoana("casian", 13, "dsafas");
+            //Persoana b = new Persoana("casian", 13, "dsafas",1);
 
             //Programare pr=new Programare(22,"adr33",new DateTime(2005,1,10),new DateTime(2000,1,25));
 
@@ -41,6 +41,7 @@ namespace ChainedHashTableForm
             // a.suprapunere(pr2);
 
             //Debug.WriteLine(a.afisare);
+
 
         }
     }

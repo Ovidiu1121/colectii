@@ -53,11 +53,10 @@ namespace Colectii_.examples
         public void adaugarePersoana(Persoana key)
         {
 
-            string sql = "insert into persoane(id,nume,varsta,password,tip) value(@id,@nume,@varsta,@password,@tip)";
+            string sql = "insert into persoane(nume,varsta,password,tip) value(@nume,@varsta,@password,@tip)";
 
             this.dataAcces.SaveData(sql, new
             {
-                key.Id,
                 key.Nume,
                 key.Varsta,
                 key.Password,
@@ -352,6 +351,27 @@ namespace Colectii_.examples
             string connectionStringIs = configuration.GetConnectionString("Default");
             return connectionStringIs;
         }
+
+        public Persoana findbyId(int id)
+        {
+
+            ILista<Persoana> a = table.keys();
+
+            Node<Persoana> p = a.getIterator();
+
+            while (p!=null)
+            {
+
+                if (p.Data.Id.Equals(id))
+                {
+                    return p.Data;
+                }
+                p=p.Next;
+            }
+            return null;
+
+        }
+
 
     }
 }
