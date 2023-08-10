@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChainedHashTableForm.interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Colectii.models
 {
-    public class Persoana : IComparable<Persoana>
+    public class Persoana : IComparable<Persoana>,IPersoanaBuilder
     {
         private int id;
         private string nume;
@@ -32,30 +33,27 @@ namespace Colectii.models
             get { return this.nume; }
             set { this.nume = value; }
         }
-
         public int Varsta
         {
             get { return this.varsta; }
             set { this.varsta = value; }
         }
-
         public string Password
         {
             get { return this.password; }
             set { this.password = value; }
         }
-
         public int Id
         {
             get { return this.id; }
             set { this.id = value; }
         }
-
         public int Tip
         {
             get { return this.tip; }
             set { this.tip = value; }
         }
+
         public override string ToString()
         {
             string text = "";
@@ -67,7 +65,6 @@ namespace Colectii.models
 
             return this.nume;
         }
-
         public int CompareTo(Persoana other)
         {
 
@@ -85,7 +82,6 @@ namespace Colectii.models
             }
 
         }
-
         public override bool Equals(object obj)
         {
             Persoana p = obj as Persoana;
@@ -93,5 +89,34 @@ namespace Colectii.models
             return p.nume.Equals(this.nume);
         }
 
+        public Persoana setId(int id)
+        {
+            this.id = id;
+            return this;
+        }
+        public Persoana setNume(string nume)
+        {
+            this.nume = nume;
+            return this;
+        }
+        public Persoana setVarsta(int varsta)
+        {
+           this.varsta = varsta;
+            return this;
+        }
+        public Persoana setpassword(string password)
+        {
+           this.password = password;
+            return this;
+        }
+        public Persoana setTip(int tip)
+        {
+            this.tip = tip;
+            return this;
+        }
+        public static Persoana buid()
+        {
+            return new Persoana();
+        }
     }
 }

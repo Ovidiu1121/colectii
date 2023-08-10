@@ -1,33 +1,47 @@
-﻿using System;
+﻿using ChainedHashTableForm.data;
+using ChainedHashTableForm.interfaces;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Colectii_.examples
 {
-    public class Programare : IComparable<Programare>
+    public class Programare : IComparable<Programare>,IProgramareBuilder
     {
-        private string numeDoctor;
-        private string numeClient;
+        private int id;
+        private int idClient;
         private string adresa;
         private DateTime dataInceput;
         private DateTime dataSfarsit;
+        private string connectionString;
+        private DataAcces dataAcces;
+
 
         public Programare()
         {
+            this.dataAcces = new DataAcces();
 
+            this.connectionString =GetConnection();
         }
-
-        public Programare(string numeDoctor, string numeClient, string adresa, DateTime dataInceput, DateTime dataSfarsit)
+        public Programare(int idClient, string adresa, DateTime dataInceput, DateTime dataSfarsit)
         {
-            this.numeDoctor = numeDoctor;
-            this.numeClient = numeClient;
+            this.idClient = idClient;
             this.adresa = adresa;
             this.dataInceput = dataInceput;
             this.dataSfarsit = dataSfarsit;
         }
-
+        public Programare(int id,int idClient, string adresa, DateTime dataInceput, DateTime dataSfarsit)
+        {
+            this.id= id;
+            this.idClient = idClient;
+            this.adresa = adresa;
+            this.dataInceput = dataInceput;
+            this.dataSfarsit = dataSfarsit;
+        }
         public DateTime DataInceput
         {
             get { return this.dataInceput; }
@@ -38,15 +52,15 @@ namespace Colectii_.examples
             get { return this.dataSfarsit; }
             set { this.dataSfarsit=value; }
         }
-        public string NumeDoctor
+        public int Id
         {
-            get { return this.numeDoctor; }
-            set { this.numeDoctor=value; }
+            get { return this.id; }
+            set { this.id=value; }
         }
-        public string NumeClient
+        public int IdClient
         {
-            get { return this.numeClient; }
-            set { this.numeClient=value; }
+            get { return this.idClient; }
+            set { this.idClient=value; }
         }
         public string Adresa
         {
@@ -54,12 +68,12 @@ namespace Colectii_.examples
             set { this.adresa=value; }
         }
 
-        public int CompareTo(Programare? other)
+
+        public int CompareTo(Programare other)
         {
             return this.dataInceput.CompareTo(other.dataInceput);
         }
-
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             Programare programare = obj as Programare;
 
@@ -82,20 +96,56 @@ namespace Colectii_.examples
             return false;
 
         }
-
         public override string ToString()
         {
             string text = "";
 
-            text+="Nume doctor:"+this.numeDoctor+", ";
-            text+="Nume client:"+this.numeClient+", ";
+            text+="Id:"+this.id+", ";
+            text+="Id client:"+this.idClient+", ";
             text+="Adresa:"+this.adresa+", ";
             text+="Data inceput:"+this.dataInceput+", ";
             text+="Data sfarsit:"+this.dataSfarsit;
 
             return text;
         }
+        public string GetConnection()
+        {
+            string c = Directory.GetCurrentDirectory();
+            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(c).AddJsonFile("appsettings.json").Build();
+            string connectionStringIs = configuration.GetConnectionString("Default");
+            return connectionStringIs;
+        }
 
+
+        public Programare setId(int id)
+        {
+           this.id = id;
+            return this;
+        }
+        public Programare setIdClient(int idClient)
+        {
+           this.idClient = idClient;
+            return this;
+        }
+        public Programare setAdresa(string adresa)
+        {
+            this.adresa = adresa;
+            return this;
+        }
+        public Programare setDataInceput(DateTime dataInceput)
+        {
+            this.dataInceput= dataInceput;
+            return this;
+        }
+        public Programare setDataSfarsit(DateTime dataSfarsit)
+        {
+           this.dataSfarsit= dataSfarsit;
+            return this;
+        }
+        public static Programare buid()
+        {
+            return new Programare();
+        }
 
     }
 }

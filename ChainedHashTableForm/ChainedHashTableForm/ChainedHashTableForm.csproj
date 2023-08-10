@@ -196,6 +196,8 @@
     <Compile Include="forms\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="interfaces\IPersoanaBuilder.cs" />
+    <Compile Include="interfaces\IProgramareBuilder.cs" />
     <Compile Include="mockups\MockupAdaugareProgramare.cs">
       <SubType>Form</SubType>
     </Compile>

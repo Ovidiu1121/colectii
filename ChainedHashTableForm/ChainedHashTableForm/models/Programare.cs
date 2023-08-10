@@ -1,4 +1,5 @@
 ﻿using ChainedHashTableForm.data;
+using ChainedHashTableForm.interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Colectii_.examples
 {
-    public class Programare : IComparable<Programare>
+    public class Programare : IComparable<Programare>,IProgramareBuilder
     {
         private int id;
         private int idClient;
@@ -26,7 +27,6 @@ namespace Colectii_.examples
 
             this.connectionString =GetConnection();
         }
-
         public Programare(int idClient, string adresa, DateTime dataInceput, DateTime dataSfarsit)
         {
             this.idClient = idClient;
@@ -34,7 +34,6 @@ namespace Colectii_.examples
             this.dataInceput = dataInceput;
             this.dataSfarsit = dataSfarsit;
         }
-
         public Programare(int id,int idClient, string adresa, DateTime dataInceput, DateTime dataSfarsit)
         {
             this.id= id;
@@ -43,7 +42,6 @@ namespace Colectii_.examples
             this.dataInceput = dataInceput;
             this.dataSfarsit = dataSfarsit;
         }
-
         public DateTime DataInceput
         {
             get { return this.dataInceput; }
@@ -70,11 +68,11 @@ namespace Colectii_.examples
             set { this.adresa=value; }
         }
 
+
         public int CompareTo(Programare other)
         {
             return this.dataInceput.CompareTo(other.dataInceput);
         }
-
         public override bool Equals(object obj)
         {
             Programare programare = obj as Programare;
@@ -98,7 +96,6 @@ namespace Colectii_.examples
             return false;
 
         }
-
         public override string ToString()
         {
             string text = "";
@@ -111,7 +108,6 @@ namespace Colectii_.examples
 
             return text;
         }
-
         public string GetConnection()
         {
             string c = Directory.GetCurrentDirectory();
@@ -119,5 +115,37 @@ namespace Colectii_.examples
             string connectionStringIs = configuration.GetConnectionString("Default");
             return connectionStringIs;
         }
+
+
+        public Programare setId(int id)
+        {
+           this.id = id;
+            return this;
+        }
+        public Programare setIdClient(int idClient)
+        {
+           this.idClient = idClient;
+            return this;
+        }
+        public Programare setAdresa(string adresa)
+        {
+            this.adresa = adresa;
+            return this;
+        }
+        public Programare setDataInceput(DateTime dataInceput)
+        {
+            this.dataInceput= dataInceput;
+            return this;
+        }
+        public Programare setDataSfarsit(DateTime dataSfarsit)
+        {
+           this.dataSfarsit= dataSfarsit;
+            return this;
+        }
+        public static Programare buid()
+        {
+            return new Programare();
+        }
+
     }
 }
