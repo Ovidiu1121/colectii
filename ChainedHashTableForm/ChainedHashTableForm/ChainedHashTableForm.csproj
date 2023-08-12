@@ -163,16 +163,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="colectii\arbori\Ierarhie.cs" />
+    <Compile Include="colectii\arbori\TreeNode.cs" />
     <Compile Include="colectii\hashtable\ChainedHashtable.cs" />
     <Compile Include="colectii\hashtable\IControler.cs" />
     <Compile Include="colectii\hashtable\IHashTable.cs" />
     <Compile Include="colectii\hashtable\SimpleHashTable.cs" />
     <Compile Include="colectii\hashtable\Stored.cs" />
-    <Compile Include="colectii\impl\Coada.cs" />
-    <Compile Include="colectii\impl\ILista.cs" />
-    <Compile Include="colectii\impl\Lista.cs" />
-    <Compile Include="colectii\impl\Node.cs" />
-    <Compile Include="colectii\impl\Stiva.cs" />
+    <Compile Include="colectii\lista\Coada.cs" />
+    <Compile Include="colectii\lista\ILista.cs" />
+    <Compile Include="colectii\lista\Lista.cs" />
+    <Compile Include="colectii\lista\Node.cs" />
+    <Compile Include="colectii\lista\Stiva.cs" />
     <Compile Include="controlers\ControlerChainedHashTable.cs" />
     <Compile Include="controlers\ControlerProgramare.cs" />
     <Compile Include="controlers\ControlerSimpleHashTable.cs" />
@@ -334,6 +336,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="colectii\coada\" />
+    <Folder Include="colectii\stiva\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

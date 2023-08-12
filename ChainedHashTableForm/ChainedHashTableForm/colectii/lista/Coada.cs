@@ -46,17 +46,24 @@ namespace Colectii.colectii.impl
 
         }
 
-        public void pop()
+        public T pop()
         {
 
             if (isEmpty() == true)
             {
-                return;
+                return default(T);
             }
             else
             {
+                if (node.Next==null)
+                {
+                    return node.Data;
+                }
                 node=node.Next;
+
+              
             }
+            return node.Data;
         }
 
         public T peak()
